@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>车统计</title>
+
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="main" style="width: 1500px;height:860px;"></div>
+
+</body>
+
+<script>
+
+    //直接加载
+    $(function () {
+        echartsCarGroup();
+    })
+
+    echartsCarGroup = function(){
+
+        $.ajax({
+            url: "/vehicle_management/echartsCar/carGroupCount",
+            type: 'get',
+            success: function (data) {
+                carColumnar(data.brandList,data.brandCountList);
+            },
+            error: function () {
+                bootbox.alert("失败");
+            }
+        });
+    }
+
+
+    carColumnar = function(brandList,brandCountList){
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '品牌车辆数量统计'
+            },
+            tooltip: {},
+            legend: {
+                data:['拥有数量']
+            },
+            xAxis: {
+                data: brandList
+            },
+            yAxis: {},
+            series: [{
+                name: '拥有数量',
+                type: 'bar',
+                data: brandCountList
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+
+
+
+
+</script>
+
+</html>

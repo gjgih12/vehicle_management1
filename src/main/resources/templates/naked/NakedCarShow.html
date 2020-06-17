@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>车查询</title>
+
+    <!-- 引入bootstrap的css -->
+    <link href="./js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入bootstrap-treeview的css -->
+    <link href="./js/treeview/bootstrap-treeview.min.css" rel="stylesheet">
+    <!-- 引入bootstrap-addTabs的css -->
+    <link href="./js/addTabs/addTabs.css" rel="stylesheet">
+    <!-- 引入bootstrap-table的css -->
+    <link href="./js/table/bootstrap-table.min.css" rel="stylesheet">
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="./js/fileinput/css/fileinput.min.css"/>
+    <!--bootstrap时间插件css-->
+    <link rel="stylesheet" href="./js/bootstrap/dist/css/bootstrap-datepicker3.css">
+
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="./js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="./js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="./js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="./js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="./js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="./js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="./js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="./js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="./js/fileinput/js/locales/zh.js"></script>
+
+
+    <script type="text/javascript" src="./js/fileinput/themes/fa/theme.js"></script>
+    <!--bootstrap时间插件js-->
+    <script src="./js/bootstrap/dist/js/bootstrap-datepicker.js"></script>
+    <!--时间插件语言-->
+    <script src="./js/bootstrap/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+
+</head>
+<body>
+
+<form id="nakedFormId" class="form-inline">
+    <br>
+    <div class="form-group">
+        <label>输入搜索:</label>
+        <input type="text" class="form-control" id="cBrandId" placeholder="输入品牌或者名称">
+    </div>
+
+
+    <div class="form-group">
+        <label>生产日期:</label>
+        <input type="text" id="myDate" class="form-control" placeholder="开始日期"/>
+        <input type="text" id="myDate2" class="form-control" placeholder="结束日期"/>
+    </div>
+
+    <button type="button" id="successId" class="btn btn-success" onclick="search()">筛选</button>
+    <a href='javascript:emptyCondition()'>清空筛选条件</a>
+    &emsp;
+    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="addNaked()">新增</button>
+<br>
+   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" onclick="addFabulous()">点赞</button>
+    <span id="fabulousCountId">12</span>-->
+
+    <!-- 按钮触发模态框 -->
+    <!--<button class="btn btn-primary btn-lg"  >开始演示模态框</button>-->
+</form>
+
+<table id="tableId"></table>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                <form id="nakedForm" role="form">
+                    <input type="hidden" id="cId" name="id">
+                    <div class="form-group">
+                        <label>品牌</label>
+                        <input type="text" class="form-control" id="cBrand" name="cBrand"
+                               placeholder="请输入品牌">
+                    </div>
+
+                    <div class="form-group">
+                        <label>名称</label>
+                        <input type="text" class="form-control" id="cName" name="cName"
+                               placeholder="请输入名称">
+                    </div>
+
+                    <div class="form-group">
+                        <label>颜色</label>
+                        <select name="cColor" id="cColor" class="form-control">
+                            <option value="0">-请选择-</option>
+                            <option value="1">白色</option>
+                            <option value="2">黑色</option>
+                            <option value="3">金色</option>
+                            <option value="4">绿色</option>
+                            <option value="5">黄色</option>
+                            <option value="6">红色</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>类型</label>
+                        <select name="cType" id="cType" class="form-control">
+                            <option value="0">-请选择-</option>
+                            <option value="1">轿车</option>
+                            <option value="2">SUV</option>
+                            <option value="3">商务</option>
+                            <option value="4">跑车</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>价格</label>
+                        <input type="text" class="form-control" id="cPrice" name="cPrice"
+                               placeholder="请输入价格">
+                    </div>
+
+                    <div class="form-group">
+                        <label>产地</label>
+                        <input type="text" class="form-control" id="cLocal" name="cLocal"
+                               placeholder="请输入名称">
+                    </div>
+
+                    <div class="form-group">
+                        <label>生产日期</label>
+                        <input type="text" id="myDate3" name="cDate" class="form-control"/>
+                        <!--<input name="cDate" class="form-control" onFocus="WdatePicker({lang:'zh-cn'})" placeholder="日期">-->
+                    </div>
+                    <!--<input type="reset" name="reset" style="display: none;" />-->
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="submitNaked()">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+</body>
+
+<script>
+
+    //直接加载
+    $(function () {
+        NakedTable();
+        myDate();
+    })
+
+
+    //bootstrap表格插件
+    NakedTable = function () {
+        $("#tableId").bootstrapTable({
+            url: "/vehicle_management/car/nakedCar/queryNakedCar",
+            method: "post",
+            striped: true,  // 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            //发送到服务器的数据编码类型
+            contentType: 'application/x-www-form-urlencoded;charset=UTF-8',   //数据编码纯文本  offset=0&limit=5
+            toolbar: '#cToolBar',   //  工具定义位置
+            columns: [
+                {
+                    field: 'id', title: "", width: $(this).width() * 0.02,
+                    formatter: function (value, row, index) {   //  格式化  当前单元格内容
+                        return "<input type='checkbox' id='xz' value=" + value + " name='chk'/>";
+                    }
+                },
+                {field: 'cBrand', title: '品牌', width: $(this).width() * 0.1},
+                {field: 'cName', title: '名称', width: $(this).width() * 0.1},
+                {
+                    field: 'cColor', title: '颜色', width: $(this).width() * 0.1,
+                    formatter: function (value, row, index) {
+                        var str = "";
+                        if (row.cColor == 1) {
+                            str = "白色";
+                        }
+                        if (row.cColor == 2) {
+                            str = "黑色";
+                        }
+                        if (row.cColor == 3) {
+                            str = "金色";
+                        }
+                        if (row.cColor == 4) {
+                            str = "绿色";
+                        }
+                        if (row.cColor == 5) {
+                            str = "黄色";
+                        }
+                        if (row.cColor == 6) {
+                            str = "红色";
+                        }
+                        return str;
+
+                    }
+                },
+                {
+                    field: 'cType', title: '类型', width: $(this).width() * 0.1,
+                    formatter: function (value, row, index) {
+                        var str = "";
+                        if (row.cType == 1) {
+                            str = "轿车";
+                        }
+                        if (row.cType == 2) {
+                            str = "SUV";
+                        }
+                        if (row.cType == 3) {
+                            str = "商务";
+                        }
+                        if (row.cType == 4) {
+                            str = "跑车";
+                        }
+                        return str;
+
+                    }
+                },
+                {field: 'cPrice', title: '价格', width: $(this).width() * 0.1},
+                {field: 'cLocal', title: '产地', width: $(this).width() * 0.1},
+                {field: 'cDate', title: '生产日期', width: $(this).width() * 0.095},
+                {
+                    field: '', title: '操作', width: $(this).width() * 0.15, formatter:
+                        function (value, row, index) {
+                            var button = "<button type='button' class='btn btn-info' onclick='updNaked("+row.id+")'>修改</button>  " +
+                                "<button type='button' class='btn btn-danger' onclick='delNaked("+row.id+")'>删除</button>";
+                            return button;
+
+                            /*if(row.orderType==1){
+                                button +="<button type='button' class='btn btn-info' onclick='seeOrder("+row.orderId+")'>查看订单</button>  ";
+                                button +="  <button type='button' class='btn btn-info' onclick='cancelOrder("+row.orderId+")'>取消订单</button>";
+                            }
+                            if(row.orderType==2){
+                                button +="<button type='button' class='btn btn-info' onclick='seeOrder("+row.orderId+")'>查看订单</button>  ";
+                                button +="  <button type='button' class='btn btn-info' onclick='delOrder("+row.orderId+")'>删除订单</button>";
+                            }
+                            if(row.orderType==3){
+                                button +="<button type='button' class='btn btn-info' onclick='seeOrder("+row.orderId+")'>查看订单</button>  ";
+                                button +="  <button type='button' class='btn btn-info' onclick='confirmOrder("+row.orderId+")'>确认订单</button>";
+                            }
+                            if(row.orderType==4){
+                                button +="<button type='button' class='btn btn-info' onclick='seeOrder("+row.orderId+")'>查看订单</button>  ";
+                                button +="  <button type='button' class='btn btn-info' onclick='endCurriculum("+row.orderId+")'>结束订单</button>";
+                            }
+                            if(row.orderType==5){
+                                button +="<button type='button' class='btn btn-info' onclick='seeOrder("+row.orderId+")'>查看订单</button>  ";
+
+                            }*/
+
+                        }
+                },
+
+            ],
+            //传递参数（*）
+            queryParams: function (params) {
+
+                var whereParams = {
+
+                    //分页  自定义的参数         默认传 limit（展示几条）    offset（从第几条开始    起始条数）
+
+                    "pageSize": params.limit,
+                    "start": params.offset,
+
+                    "cBrand": $("#cBrandId").val(),
+
+                }
+                return whereParams;
+            },
+            //前台--排序字段
+            //sortName:'proPrice',
+            //sortOrder:'desc',
+            //前台--搜索框
+            search: false,
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //分页方式   后台请求的分页方式
+            sidePagination: 'server',
+            pagination: true,                   //是否显示分页（*）
+            pageNum: 1,                       //每页的记录行数（*）
+            pageSize: 10,                       //每页的记录行数（*）
+            pageList: [10, 15, 20, 30],        //可供选择的每页的行数（*）
+        });
+    }
+
+    //条件查询
+    function search() {
+        $("#tableId").bootstrapTable("refresh");
+    }
+
+    //清空筛选条件
+    function emptyCondition() {
+        $("#nakedFormId")[0].reset();
+    }
+
+    //新增
+    addNaked = function(){
+        //dialogNaked("/vehicle_management/toAddNakedDialog","/vehicle_management/car/nakedCar/addNakedCar","新增","");
+        $("select option[value!='0']").attr("selected", false);
+        $("#nakedForm")[0].reset();     //重置表单
+        $('#myModal').modal('show');    //弹出模态框
+        $('#myModalLabel').html('新增');
+    }
+
+    //修改回显
+    updNaked = function (nakedId) {
+        $("select option[value!='0']").attr("selected", false);
+        $("#nakedForm")[0].reset();
+        $('#myModal').modal('show');
+        $('#myModalLabel').html('修改');
+
+        $.ajax({
+            url: "/vehicle_management/car/nakedCar/oneNakedCar",
+            type: 'get',
+            data: {nakedId: nakedId},
+            success: function (data) {
+                $("#cId").val(data.nakedCarEntity.id)
+                $("#cBrand").val(data.nakedCarEntity.cBrand)
+                $("#cName").val(data.nakedCarEntity.cName);
+                $("#cPrice").val(data.nakedCarEntity.cPrice);
+                $("#cLocal").val(data.nakedCarEntity.cLocal);
+                $("#myDate3").val(data.nakedCarEntity.cDate);
+                $("#cColor option[value="+data.nakedCarEntity.cColor+"]").attr("selected","");
+                $("#cType option[value="+data.nakedCarEntity.cType+"]").attr("selected","");
+
+            },
+            error: function () {
+                bootbox.alert("失败");
+            }
+        });
+    }
+
+
+
+    delNaked = function () {
+        alert("这个是删除")
+    }
+
+    //提交新增
+    submitNaked = function(){
+
+        alert($("#nakedForm").serialize());
+
+        $.ajax({
+            url: "/vehicle_management/car/nakedCar/addNakedCar",
+            type: 'post',
+            data: $("#nakedForm").serialize(),
+            success: function () {
+                bootbox.alert("保存成功");
+                $("#tableId").bootstrapTable("refresh");    //刷新表格
+            },
+            error: function () {
+                bootbox.alert("失败");
+            }
+        });
+    }
+
+
+
+
+
+
+    //格式化时间插件
+     myDate = function(){
+         $("#myDate,#myDate2,#myDate3").datepicker({
+             language: "zh-CN",
+             clearBtn: true,//清除
+             autoclose: true,
+             todayHighlight: true,
+             format: 'yyyy-mm-dd',
+             todayBtn: false,//今日按钮
+             startDate: '2000-06-06', //与你自己设置的格式一致yyyy-mm-dd，未设置的话与默认格式一致mm/dd/yyyy
+             endDate: '2099-10-10'
+         })
+     }
+
+
+
+
+
+    //点赞
+    addFabulous = function(){
+        $.ajax({
+            url: "/vehicle_management/fabulous/redisDemoHash",
+            type: 'post',
+            success: function () {
+                alert("成功点赞")
+            },
+            error: function () {
+                bootbox.alert("失败");
+            }
+        });
+    }
+
+
+
+
+
+    //用js实现的弹框
+    /*dialogNaked = function (HTMLurl, submitUrl, title, dataId) {
+
+        var dialog = bootbox.dialog({
+            title: title,
+            message: getJspHtml(HTMLurl),   //调用方法
+            /!*            success:function(){
+                            alert(data.coupon_title);
+                            //$("#coupon_title").val(data.coupon_title);
+                        },*!/
+            buttons: {
+                "save": {
+                    label: '保存',
+                    //自定义样式
+                    className: "btn-success",
+                    callback: function () {
+                        $.ajax({
+                            url: submitUrl,
+                            type: 'post',
+                            data: $("#nakedForm").serialize(),
+                            success: function () {
+                                bootbox.alert("保存成功");
+                                $("#tableId").bootstrapTable("refresh");
+                                //location.reload();
+                            },
+                            error: function () {
+                                bootbox.alert("失败");
+                            }
+                        });
+                    }
+                },
+                "unSave": {
+                    label: '取消',
+                    //自定义样式
+                    className: "btn-info",
+                    callback: function () {
+                        // return false;  //dialog不关闭
+                    }
+                }
+            }
+        });
+
+        $.ajax({
+            url: "http://192.168.1.114:8033/findCouponById",
+            type: 'post',
+            data: {coupon_id: coupon_id},
+            success: function (data) {
+                $("#couponId").val(data.coupon_id)
+                $("#couponTitle").val(data.coupon_title);
+                $("#couponPrice").val(data.coupon_price);
+                $("#tyid").val(data.coupon_get);
+                if ($("#up").val() == data.coupon_status) {
+                    $("#up").attr("checked", "checked")
+                } else {
+                    $("#xj").attr("checked", "checked")
+                }
+                $("#sj").val(data.coupon_date);
+
+            },
+            error: function () {
+                bootbox.alert("失败");
+            }
+        });
+
+
+    }*/
+
+    /*function getJspHtml(urlStr) {
+        var jspHtml = "";
+        // async  (默认: true) 默认设置下，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为 false。
+        //注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行。
+
+        $.ajax({
+            url: urlStr,
+            type: 'post',
+            //同步的ajax
+            async: false,
+            success: function (data) {
+
+                jspHtml = data;
+
+            },
+            error: function () {
+                bootbox.alert("ajax失败");
+            }
+        });
+        return jspHtml;
+    }*/
+</script>
+
+</html>

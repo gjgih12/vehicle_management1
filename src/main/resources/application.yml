@@ -1,0 +1,33 @@
+
+# Tomcat配置
+server:
+  tomcat:
+    uri-encoding: UTF-8           # tomcat的URI编码
+    max-threads: 1024             # tomcat最大线程数，默认为200
+    min-spare-threads: 30         #:最小备用线程数
+    accept-count: 5000            #当tomcat起动的线程数达到最大时，接受排队的请求个数，默认值为100
+  port: 8001
+  servlet:
+    context-path: /vehicle_management
+
+mybatis:
+  mapper-locations: mapper/*.xml
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gengcar?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password:
+  jackson:
+    time-zone: GMT+8      #时差问题
+    #redis
+  redis:
+    host: 192.168.124.15
+    port: 6379
+    password: 123456
+logging:
+  config:
+    classpath: log/logback-spring.xml
+  file:
+    path: D:/nmyslog/nmys
