@@ -74,6 +74,16 @@
     <!-- 按钮触发模态框 -->
     <!--<button class="btn btn-primary btn-lg"  >开始演示模态框</button>-->
 </form>
+<br>
+<form class="form-inline">
+    <div>
+        <input id="code" placeholder="验证码" class="form-control">
+        <!-- 验证码 显示 -->
+        <img onclick="getvCode()" id="verifyimg" style="margin-left: 20px;"/>
+        <button type="button" class="btn btn-primary" onclick="proving()">验证</button>
+    </div>
+</form>
+
 
 <table id="tableId"></table>
 
@@ -162,6 +172,7 @@
     $(function () {
         NakedTable();
         myDate();
+        getvCode();
     })
 
 
@@ -414,6 +425,37 @@
     }
 
 
+    getvCode = function(){
+
+        $("#verifyimg").attr("src",timestamp("http://localhost:8001/vehicle_management/verifyCode"))
+
+    }
+
+    proving = function(){
+
+        $.ajax({
+            url: "/vehicle_management/provingCode/"+$("#code").val(),
+            type: 'get',
+            success: function (data) {
+                alert(data);
+            },
+            error: function () {
+                bootbox.alert("失败");
+            }
+        });
+
+    }
+
+    //给图片路径加随机数 每次重新访问服务器读取图片， 而不再读取缓存中的图片
+    timestamp = function(url) {
+        var getTimestamp = new Date().getTime();
+        if (url.indexOf("?") > -1) {
+            url = url + "&timestamp=" + getTimestamp
+        } else {
+            url = url + "?timestamp=" + getTimestamp
+        }
+        return url;
+    }
 
 
 
