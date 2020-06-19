@@ -1,16 +1,14 @@
 package com.gj.modules.controller.funtesting;
 
-import com.gj.modules.model.NakedCarEntity;
 import com.gj.modules.model.ScheduleJobEntity;
 import com.gj.utils.ScheduleUtils;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Random;
 
 /**
  * 功能测试的请求
@@ -20,7 +18,8 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/funtest")
-public class FunTestController {
+//@Component  //项目启动直接加载 实现ApplicationRunner 重写run方法
+public class FunTestController /*implements ApplicationRunner */{
 
     @Autowired
     private Scheduler scheduler;
@@ -53,4 +52,16 @@ public class FunTestController {
 
     }
 
+    /*@Override
+    public void run(ApplicationArguments args) throws Exception {
+        ScheduleJobEntity scheduleJobEntity = new ScheduleJobEntity();
+        scheduleJobEntity.setJobId("1232111");
+        scheduleJobEntity.setBeanName("nakedCarController");
+        scheduleJobEntity.setMethodName("addNakedCar");
+        scheduleJobEntity.setParams("");
+        scheduleJobEntity.setCronExpression("0/10 * * * * ? ");
+        scheduleJobEntity.setStatus(0);
+
+        ScheduleUtils.createScheduleJob(scheduler, scheduleJobEntity);
+    }*/
 }
