@@ -45,9 +45,9 @@
     </select>
 
     <insert id="addNakedCar" parameterType="com.gj.modules.model.NakedCarEntity">
-      INSERT INTO t_car ( c_brand, c_name,c_color,c_type,c_price,c_local,c_date )
+      INSERT INTO t_car ( c_brand, c_name,c_color,c_type,c_price,c_local,c_date,create_time,update_time )
                        VALUES
-                       ( #{nakedCar.cBrand}, #{nakedCar.cName},#{nakedCar.cColor},#{nakedCar.cType},#{nakedCar.cPrice},#{nakedCar.cLocal},#{nakedCar.cDate})
+                       ( #{nakedCar.cBrand}, #{nakedCar.cName},#{nakedCar.cColor},#{nakedCar.cType},#{nakedCar.cPrice},#{nakedCar.cLocal},#{nakedCar.cDate},now(),now())
     </insert>
 
     <select id="oneNakedCar" parameterType="Integer" resultType="com.gj.modules.model.NakedCarEntity">

@@ -31,3 +31,6 @@ logging:
     classpath: log/logback-spring.xml
   file:
     path: D:/nmyslog/nmys
+
+scheduling:
+  enabled: false

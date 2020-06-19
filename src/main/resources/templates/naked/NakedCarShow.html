@@ -362,8 +362,6 @@
     //提交新增
     submitNaked = function(){
 
-        alert($("#nakedForm").serialize());
-
         $.ajax({
             url: "/vehicle_management/car/nakedCar/addNakedCar",
             type: 'post',
