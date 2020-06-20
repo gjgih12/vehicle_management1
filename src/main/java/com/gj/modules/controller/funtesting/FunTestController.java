@@ -4,6 +4,10 @@ import com.gj.modules.model.ScheduleJobEntity;
 import com.gj.utils.ScheduleUtils;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,10 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/6/14
  */
 
-@RestController
-@RequestMapping("/funtest")
-//@Component  //项目启动直接加载 实现ApplicationRunner 重写run方法
-public class FunTestController /*implements ApplicationRunner */{
+/*@RestController
+@RequestMapping("/funtest")*/
+@Component  //项目启动直接加载 实现ApplicationRunner 重写run方法
+@ConditionalOnProperty(prefix = "scheduling", name = "enabled2", havingValue = "true") //开关
+public class FunTestController implements ApplicationRunner {
 
     @Autowired
     private Scheduler scheduler;
@@ -49,7 +54,7 @@ public class FunTestController /*implements ApplicationRunner */{
 
     }
 
-    /*@Override
+    @Override
     public void run(ApplicationArguments args) throws Exception {
         ScheduleJobEntity scheduleJobEntity = new ScheduleJobEntity();
         scheduleJobEntity.setJobId("1232111");
@@ -60,5 +65,5 @@ public class FunTestController /*implements ApplicationRunner */{
         scheduleJobEntity.setStatus(0);
 
         ScheduleUtils.createScheduleJob(scheduler, scheduleJobEntity);
-    }*/
+    }
 }
