@@ -1,0 +1,13 @@
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gengcar?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password:
+  jackson:
+    time-zone: GMT+8      #时差问题
+
+scheduling:
+  enabled: false
+  enabled2: false
