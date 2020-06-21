@@ -25,7 +25,9 @@ spring:
     password: 123456
 
 logging:
-  config:
-    classpath: log/logback-spring.xml
-  file:
-    path: D:/nmyslog/nmys
+#  config:
+#    classpath: log/logback-spring.xml
+  file: D:/nmyslog/nmys/log_info.log
+#    path:
+#  level:
+#    com.gj: debug      #默认是info
