@@ -1,5 +1,6 @@
 package com.gj.practice;
 
+import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -85,8 +86,17 @@ public class BaseCodeTest {
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
+    }
 
+
+    @Test
+    public void linShi(){
+
+        System.out.println("AAA"+DateTime.now().plusSeconds(60));
+        System.out.println("BBB"+DateTime.now());
+        //System.out.println("Date"+new Date());
 
     }
+
 
 }
