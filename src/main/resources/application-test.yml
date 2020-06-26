@@ -8,6 +8,7 @@ spring:
   jackson:
     time-zone: GMT+8      #时差问题
 
+#是否打开对应的定时任务
 scheduling:
   enabled: false
   enabled2: false
