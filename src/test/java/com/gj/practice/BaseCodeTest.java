@@ -98,5 +98,31 @@ public class BaseCodeTest {
 
     }
 
+    /**
+     * 做对比
+     */
+    @Test
+    public void duiBi(){
+
+        String aa = "1.0.1";
+        String bb = "1.1";
+
+        String[] versionArray1 = aa.split("\\.");
+        String[] versionArray2 = bb.split("\\.");
+
+        int idx = 0;
+        int minLength = Math.min(versionArray1.length, versionArray2.length);//取最小长度值
+
+        int diff = 0;
+        System.out.println(versionArray1[idx].compareTo(versionArray2[idx]));
+        /*while (idx < minLength
+                && (diff = versionArray1[idx].length() - versionArray2[idx].length()) == 0//先比较长度
+                && (diff = versionArray1[idx].compareTo(versionArray2[idx])) == 0) {//再比较字符
+            ++idx;
+        }*/
+
+        //System.out.println(diff);
+
+    }
 
 }
