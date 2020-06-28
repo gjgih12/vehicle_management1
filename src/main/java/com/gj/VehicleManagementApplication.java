@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 //@EnableScheduling
 @SpringBootApplication
+//@EnableEncryptableProperties //开启加密注解
 @MapperScan("com.gj.modules.mapper")
 public class VehicleManagementApplication extends SpringBootServletInitializer {
 

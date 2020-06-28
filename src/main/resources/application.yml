@@ -31,3 +31,7 @@ logging:
 #    path:
 #  level:
 #    com.gj: debug      #默认是info
+
+jasypt:
+  encryptor:
+    password: Uy&75loRd%mDssx  #你的秘钥
