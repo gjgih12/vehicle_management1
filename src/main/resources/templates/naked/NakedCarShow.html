@@ -17,6 +17,10 @@
     <!--bootstrap时间插件css-->
     <link rel="stylesheet" href="./js/bootstrap/dist/css/bootstrap-datepicker3.css">
 
+    <!--验证码2-->
+    <!--<link href="./index/css/styles.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="./index/css/demo.css" rel="stylesheet" type="text/css" />-->
+
 
     <!-- 引入jquery -->
     <script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -45,6 +49,26 @@
     <!--时间插件语言-->
     <script src="./js/bootstrap/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 
+    <!--验证码2-->
+    <script type="text/javascript" src="./index/js/Treatment.js"></script>
+
+    <style>
+        .J_codeimg
+        {
+            width: 85px;
+            height: 36px;
+            padding: 3px;
+            z-index: 0;
+            color: #ff594f;
+        }
+        body .login .validation {
+            position: absolute;
+            z-index: 1;
+            right: 10px;
+            top: 14px;
+            opacity: 0;
+        }
+    </style>
 
 </head>
 <body>
@@ -81,6 +105,17 @@
         <!-- 验证码 显示 -->
         <img onclick="getvCode()" id="verifyimg" style="margin-left: 20px;"/>
         <button type="button" class="btn btn-primary" onclick="proving()">验证</button>
+    </div>
+</form>
+<form>
+    <div>
+        <input name="code" placeholder='验证码' maxlength="4" type='text' /><!--name="ValidateNum" autocomplete="off"-->
+        <!-- 验证码2 显示 -->
+        <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
+            <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="proving2()">验证</button>
+
     </div>
 </form>
 
@@ -173,6 +208,7 @@
         NakedTable();
         myDate();
         getvCode();
+        Code();
     })
 
 
@@ -457,7 +493,37 @@
         return url;
     }
 
+    var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
+    var CodeVal = 0;
+    function Code() {
+        if (canGetCookie == 1) {
+            createCode("AdminCode");
+            var AdminCode = getCookieValue("AdminCode");
+            showCheck(AdminCode);
+        } else {
+            showCheck(createCode(""));
+        }
+    }
+    function showCheck(a) {
+        CodeVal = a;
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 1000, 1000);
+        ctx.font = "90px 'Hiragino Sans GB'";
+        ctx.fillStyle = "#a451e8";
+        ctx.fillText(a, 0, 100);
+    }
 
+
+    proving2 = function(){
+        var code = $('input[name="code"]').val();
+        var JsonData = { code: code };
+        if(JsonData.code.toUpperCase() == CodeVal.toUpperCase()){
+            alert("输出正确");
+        }else{
+            alert("输入错误");
+        }
+    }
 
     //用js实现的弹框
     /*dialogNaked = function (HTMLurl, submitUrl, title, dataId) {
