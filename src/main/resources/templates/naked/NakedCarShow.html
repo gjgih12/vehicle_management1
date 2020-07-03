@@ -99,25 +99,25 @@
     <!--<button class="btn btn-primary btn-lg"  >开始演示模态框</button>-->
 </form>
 <br>
-<form class="form-inline">
+<!--<form class="form-inline">
     <div>
         <input id="code" placeholder="验证码" class="form-control">
-        <!-- 验证码 显示 -->
+        &lt;!&ndash; 验证码 显示 &ndash;&gt;
         <img onclick="getvCode()" id="verifyimg" style="margin-left: 20px;"/>
         <button type="button" class="btn btn-primary" onclick="proving()">验证</button>
     </div>
 </form>
 <form>
     <div>
-        <input name="code" placeholder='验证码' maxlength="4" type='text' /><!--name="ValidateNum" autocomplete="off"-->
-        <!-- 验证码2 显示 -->
+        <input name="code" placeholder='验证码' maxlength="4" type='text' />&lt;!&ndash;name="ValidateNum" autocomplete="off"&ndash;&gt;
+        &lt;!&ndash; 验证码2 显示 &ndash;&gt;
         <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
             <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
         </div>
         <button type="button" class="btn btn-primary" onclick="proving2()">验证</button>
 
     </div>
-</form>
+</form>-->
 
 
 <table id="tableId"></table>
@@ -207,8 +207,8 @@
     $(function () {
         NakedTable();
         myDate();
-        getvCode();
-        Code();
+        //getvCode();
+        //Code();
     })
 
 
