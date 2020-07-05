@@ -1,13 +1,16 @@
-package com.gj.modules.service.impl;
+package com.gj.common.filter;
 
-import com.gj.common.exception.ValidateCodeException;
 import com.gj.modules.controller.ValidateCodeController;
+import com.gj.modules.controller.ValidateCodeController;
+import com.gj.common.exception.ValidateCodeException;
 import com.gj.modules.model.ImageCode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -15,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,9 +27,11 @@ import java.io.IOException;
  * @author ：gengjian
  * @date ：2020/7/3
  */
+@Component
+@WebFilter
 public class ValidateCodeFilter extends OncePerRequestFilter {
-    @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
+    /*@Autowired
+    private AuthenticationFailureHandler authenticationFailureHandler;*/
 
     //使用sessionStrategy将生成的验证码对象存储到Session中
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
@@ -39,9 +45,16 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
      * @throws IOException
      */
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest,
+                                    HttpServletResponse httpServletResponse,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
         //判断请求页面是否为/login、该路径对应登录form表单的action路径，请求的方法是否为POST，是的话进行验证码校验逻辑，否则直接执行filterChain.doFilter让代码往下走
-        if (StringUtils.equalsIgnoreCase("/login", httpServletRequest.getRequestURI())
+
+        String requestURI = httpServletRequest.getRequestURI();
+
+        if (StringUtils.equalsIgnoreCase("/vehicle_management/login",
+                httpServletRequest.getRequestURI())
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getMethod(), "post")) {
             try {
                 //校验验证码 校验通过、继续向下执行   验证失败、抛出异常
@@ -49,7 +62,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             } catch (ValidateCodeException e) {
                 //校验失败 返回错误状态码及信息
                 //authenticationFailureHandler.onAuthenticationFailure(httpServletRequest, httpServletResponse, e);
-                e.printStackTrace();
+                //e.printStackTrace();
                 return;
             }
         }
