@@ -35,3 +35,10 @@ logging:
 jasypt:
   encryptor:
     password: Uy&75loRd%mDssx  #你的秘钥
+
+config:
+  gexin:
+    host: http://sdk.open.api.igexin.com/apiex.htm
+    appId: NEW6Xa9TuC7lTUoepMy45A
+    appKey: KlyrHUVdl16IGeCdS7C3r2
+    masterSecret: h9bqx87bIx7a70mf6HP4g6

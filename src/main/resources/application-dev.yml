@@ -12,3 +12,5 @@ spring:
 scheduling:
   enabled: false
   enabled2: false
+
+
