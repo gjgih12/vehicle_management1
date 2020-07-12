@@ -99,7 +99,7 @@ public class StringTest {
     @Test
     public void getPaixu(){
 
-        CarDemo carDemo1 = new CarDemo(1,6,"小明");
+        /*CarDemo carDemo1 = new CarDemo(1,6,"小明");
         CarDemo carDemo2 = new CarDemo(2,13,"小黄");
         CarDemo carDemo3 = new CarDemo(3,19,"小花");
         CarDemo carDemo4 = new CarDemo(4,15,"灰太狼");
@@ -123,15 +123,25 @@ public class StringTest {
         for (CarDemo car2:carList2) {
             System.out.println(car2);
         }
-
+*/
     }
 
     @Test
     public void LingShi(){
 
-        String tel = "15101163606";
-        String str = tel.substring(tel.length()-6);
-        System.out.println(str);
+        String[] str = {"小黄","小明","小花","小黑","小绿"};
+
+        List<CarDemo> carList = new ArrayList();
+        CarDemo carDemo = null;
+        for (int i = 0; i < str.length; i++) {
+            carDemo = new CarDemo();
+            carDemo.setcId(1);
+            carDemo.setAge(12);
+            carDemo.setName(str[i]);
+            carList.add(carDemo);
+        }
+
+        System.out.println(carList);
 
     }
 

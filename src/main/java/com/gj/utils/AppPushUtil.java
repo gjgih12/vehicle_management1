@@ -73,7 +73,9 @@ public class AppPushUtil {
      * @return
      */
     public String singlePush(PushMessage pushMessage) {
-        IGtPush push = new IGtPush(host, appKey, masterSecret);
+        IGtPush push = new IGtPush("http://api.getui.com/apiex.htm",
+                "KlyrHUVdl16IGeCdS7C3r2",
+                "h9bqx87bIx7a70mf6HP4g6");
         SingleMessage message = new SingleMessage();
         setMessageData(message, pushMessage);
         message.setOffline(true);
@@ -82,7 +84,7 @@ public class AppPushUtil {
         // 可选，1为wifi，0为不限制网络环境。根据手机处于的网络情况，决定是否下发
         message.setPushNetWorkType(0);
         Target target = new Target();
-        target.setAppId(appId);
+        target.setAppId("NEW6Xa9TuC7lTUoepMy45A");
         target.setClientId(pushMessage.getCid());
         IPushResult ret = null;
         try {
@@ -152,7 +154,9 @@ public class AppPushUtil {
      * @param pushMessage
      */
     public String listPush(PushMessage pushMessage) {
-        IIGtPush push = new IGtPush(host, appKey, masterSecret);
+        IIGtPush push = new IGtPush("http://sdk.open.api.igexin.com/apiex.htm",
+                "KlyrHUVdl16IGeCdS7C3r2",
+                "h9bqx87bIx7a70mf6HP4g6");
 
         ListMessage message = new ListMessage();
 
@@ -182,7 +186,7 @@ public class AppPushUtil {
 
                 Target target = new Target();
 
-                target.setAppId(appId);
+                target.setAppId("NEW6Xa9TuC7lTUoepMy45A");
 
                 target.setClientId(cid);
 
@@ -292,9 +296,9 @@ public class AppPushUtil {
 
         NotificationTemplate template = new NotificationTemplate();
 
-        template.setAppId(appId);
+        template.setAppId("NEW6Xa9TuC7lTUoepMy45A");
 
-        template.setAppkey(appKey);
+        template.setAppkey("KlyrHUVdl16IGeCdS7C3r2");
 
         // 透传消息设置，1为强制启动应用，客户端接收到消息后就会立即启动应用；2为等待应用启动
 

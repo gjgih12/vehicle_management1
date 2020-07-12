@@ -46,11 +46,11 @@ public class CarDemo {
         this.sort = sort;
     }
 
-    public CarDemo(Integer cId, Integer age, String name) {
+    /*public CarDemo(Integer cId, Integer age, String name) {
         this.cId = cId;
         this.age = age;
         Name = name;
-    }
+    }*/
 
 
     @Override
