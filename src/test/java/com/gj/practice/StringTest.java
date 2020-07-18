@@ -133,15 +133,16 @@ public class StringTest {
 
         List<CarDemo> carList = new ArrayList();
         CarDemo carDemo = null;
-        for (int i = 0; i < str.length; i++) {
+        for (int i = 0; i < 50000; i++) {
             carDemo = new CarDemo();
             carDemo.setcId(1);
             carDemo.setAge(12);
-            carDemo.setName(str[i]);
+            carDemo.setName(String.valueOf(i));
             carList.add(carDemo);
+            System.out.println("循环次数:"+i+",集合长度："+carList.size());
         }
 
-        System.out.println(carList);
+        System.out.println("循环结束:"+carList.get(49998));
 
     }
 
