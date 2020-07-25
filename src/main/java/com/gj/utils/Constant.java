@@ -14,7 +14,7 @@ package com.gj.utils;
 /**
  * 常量
  *
- * @author 李鹏军
+ * @author gengjian
  */
 public class Constant {
     public static final String WEBSOCKET_USER = "WEBSOCKET_USER";

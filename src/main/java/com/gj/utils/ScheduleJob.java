@@ -24,7 +24,7 @@ import java.util.concurrent.*;
 /**
  * 定时任务
  *
- * @author 李鹏军
+ * @author gengjian
  */
 @Slf4j
 public class ScheduleJob extends QuartzJobBean {

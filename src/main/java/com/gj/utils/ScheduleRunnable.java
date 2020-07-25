@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 /**
  * 执行定时任务
  *
- * @author 李鹏军
+ * @author gengjian
  */
 public class ScheduleRunnable implements Runnable {
     private Object target;

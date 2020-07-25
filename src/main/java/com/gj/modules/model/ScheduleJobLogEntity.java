@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * 定时任务日志
  *
- * @author 李鹏军
+ * @author gengjian
  */
 @Data
 public class ScheduleJobLogEntity implements Serializable {
