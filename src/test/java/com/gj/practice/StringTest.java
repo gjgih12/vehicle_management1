@@ -5,8 +5,10 @@ import com.gj.testpojo.CarDemo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * String的常用方法
@@ -144,6 +146,24 @@ public class StringTest {
 
         System.out.println("循环结束:"+carList.get(49998));
 
+    }
+
+    @Test
+    public void Lingshi1(){
+        String[] str = {"gggggg"};
+        Lingshi2("sda","fffff");
+    }
+
+    public void Lingshi2(String st,String...str){
+
+        String description = "您的退款申请被拒绝。";
+        Matcher m= Pattern.compile("\\{(\\d)\\}").matcher(description);
+        while(m.find()){
+            description=description.replace(m.group(),str[Integer.parseInt(m.group(1))]);
+        }
+        StringBuffer s4 = new StringBuffer();
+
+        System.out.println(str[0]);
     }
 
 
