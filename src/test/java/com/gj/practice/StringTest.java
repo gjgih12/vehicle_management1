@@ -2,6 +2,7 @@ package com.gj.practice;
 
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 import com.gj.testpojo.CarDemo;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -143,6 +144,37 @@ public class StringTest {
         }
 
         System.out.println("循环结束:"+carList.get(49998));
+
+    }
+
+    @Test
+    public void LingShi22(){
+
+        List<String> strList = new ArrayList<>();
+        strList.add("aa");
+        strList.add("bb");
+        strList.add("cc");
+        strList.add("dd");
+        strList.add("ee");
+        strList.add("ff");
+        strList.add("gg");
+        strList.add("hh");
+        strList.add("ii");
+        strList.add("jj");
+        strList.add("kk");
+        strList.add("ll");
+
+        List<List<String>> cidsBatch = Lists.partition(strList, 3);
+        List<String> targets = new ArrayList<>();
+
+        for (List<String> batch : cidsBatch) {
+
+            for (String cid : batch) {
+                targets.add(cid);
+            }
+            System.out.println(targets);
+        }
+
 
     }
 
