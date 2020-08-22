@@ -179,5 +179,26 @@ public class StringTest {
     }
 
 
+    @Test
+    public void LingShi23(){
+
+        String[] keys = {"mobilePhone","nickname","projectName","roleName"};
+
+        System.out.println(Arrays.binarySearch(keys, "roleName"));
+
+    }
+
+
+    @Test
+    public void LingShi24(){
+
+       String str1 = "136";
+       String str2 = "134";
+       int str = str1.compareTo(str2);
+        System.out.println(str);
+
+    }
+
+
 
 }
