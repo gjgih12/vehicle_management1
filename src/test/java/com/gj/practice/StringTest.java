@@ -2,14 +2,11 @@ package com.gj.practice;
 
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 import com.gj.testpojo.CarDemo;
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * String的常用方法
@@ -187,6 +184,58 @@ public class StringTest {
         carDemo.setSort(12);
         return carDemo;
     }
+    @Test
+    public void LingShi22(){
+
+        List<String> strList = new ArrayList<>();
+        strList.add("aa");
+        strList.add("bb");
+        strList.add("cc");
+        strList.add("dd");
+        strList.add("ee");
+        strList.add("ff");
+        strList.add("gg");
+        strList.add("hh");
+        strList.add("ii");
+        strList.add("jj");
+        strList.add("kk");
+        strList.add("ll");
+
+        List<List<String>> cidsBatch = Lists.partition(strList, 3);
+        List<String> targets = new ArrayList<>();
+
+        for (List<String> batch : cidsBatch) {
+
+            for (String cid : batch) {
+                targets.add(cid);
+            }
+            System.out.println(targets);
+        }
+
+
+    }
+
+
+    @Test
+    public void LingShi23(){
+
+        String[] keys = {"mobilePhone","nickname","projectName","roleName"};
+
+        System.out.println(Arrays.binarySearch(keys, "roleName"));
+
+    }
+
+
+    @Test
+    public void LingShi24(){
+
+       String str1 = "136";
+       String str2 = "134";
+       int str = str1.compareTo(str2);
+        System.out.println(str);
+
+    }
+
 
     public CarDemo Lingshi3dd2(){
         CarDemo carDemo = new CarDemo();
