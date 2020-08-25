@@ -2,6 +2,7 @@ package com.gj.practice;
 
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 import com.gj.testpojo.CarDemo;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -167,5 +168,53 @@ public class StringTest {
     }
 
 
+    @Test
+    public void Lingshi3(){
+        CarDemo carDemo;
+        carDemo = Lingshi3dd();
+        System.out.println("第一次"+carDemo);
+        carDemo = Lingshi3dd2();
+        carDemo.setcId(66);
+        System.out.println("第二次"+carDemo);
+
+    }
+
+    public CarDemo Lingshi3dd(){
+        CarDemo carDemo = new CarDemo();
+        carDemo.setcId(123);
+        carDemo.setName("都");
+        carDemo.setAge(1);
+        carDemo.setSort(12);
+        return carDemo;
+    }
+
+    public CarDemo Lingshi3dd2(){
+        CarDemo carDemo = new CarDemo();
+        carDemo.setName("哈哈");
+        return carDemo;
+    }
+
+
+    @Test
+    public void Lingshi4(){
+        List<Integer> intList = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<List<Integer>> subSets = Lists.partition(intList, 3);
+
+        System.out.println("1111111111:::"+subSets.get(0));
+        System.out.println("222222222:::"+subSets.get(1));
+        System.out.println("333333333:::"+subSets.get(2));
+
+    }
+
+    @Test
+    public void Lingshi5(){
+        char a = 'A';
+        for (int i = 0; i < 15; i++) {
+            System.out.println(a++);
+        }
+
+
+
+    }
 
 }
