@@ -2,11 +2,15 @@ package com.gj.practice;
 
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 import com.gj.testpojo.CarDemo;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * String的常用方法
