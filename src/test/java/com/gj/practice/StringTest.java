@@ -266,7 +266,17 @@ public class StringTest {
             System.out.println(a++);
         }
 
+    }
 
+    @Test
+    public void Lingshi6(){
+        String a = "sd";
+        String b = "sdfwefdcs";
+        if(b.startsWith(a)){
+            System.out.println("是");
+        }else{
+            System.out.println("否");
+        }
 
     }
 
