@@ -1,6 +1,8 @@
 package com.gj.practice;
 
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gj.testpojo.CarDemo;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
@@ -279,5 +281,37 @@ public class StringTest {
         }
 
     }
+
+    private static ObjectMapper mapper;
+
+    @Test
+    public void Lingshi7(){
+
+        CarDemo carDemo = new CarDemo();
+        carDemo.setcId(1);
+        carDemo.setName("大苏打");
+        carDemo.setAge(23);
+        carDemo.setSort(3);
+        System.out.println("对象"+carDemo);
+
+        ObjectMapper objectMapper = getMapperInstance(false);
+        try {
+            String json = objectMapper.writeValueAsString(carDemo);
+            System.out.println("JSON"+json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static ObjectMapper getMapperInstance(boolean createNew) {
+        if (createNew) {
+            return new ObjectMapper();
+        } else if (mapper == null) {
+            mapper = new ObjectMapper();
+        }
+        return mapper;
+    }
+
 
 }
