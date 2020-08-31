@@ -1,7 +1,7 @@
 package com.gj.demo.scheduling;
 
-import com.gj.modules.model.NakedCarEntity;
-import com.gj.modules.service.NakedCarService;
+import com.gj.common.entity.car.NakedCarEntity;
+import com.gj.modules.business.service.NakedCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;

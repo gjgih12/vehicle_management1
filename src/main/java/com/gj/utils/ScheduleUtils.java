@@ -5,14 +5,14 @@
  *
  * 修改履历:
  *      日期                修正者      主要内容
- *      2018/11/21 16:04    李鹏军      初版完成
+ *      2018/11/21 16:04    gengjina      初版完成
  *
  * Copyright (c) 2019-2019 微同软件
  */
 package com.gj.utils;
 
 import com.gj.common.exception.BusinessException;
-import com.gj.modules.model.ScheduleJobEntity;
+import com.gj.common.entity.job.ScheduleJobEntity;
 import com.google.gson.Gson;
 import org.quartz.*;
 

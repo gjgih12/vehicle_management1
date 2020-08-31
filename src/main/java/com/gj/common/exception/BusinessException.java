@@ -5,7 +5,7 @@
  *
  * 修改履历:
  *      日期                修正者      主要内容
- *      2018/11/21 16:04    李鹏军      初版完成
+ *      2018/11/21 16:04    gengjina      初版完成
  *
  * Copyright (c) 2019-2019 微同软件
  */
@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 /**
  * 自定义异常
  *
- * @author 李鹏军
+ * @author gengjina
  */
 public class BusinessException extends RuntimeException {
     private static final long serialVersionUID = 1L;

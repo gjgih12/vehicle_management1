@@ -9,7 +9,7 @@ import com.gexin.rp.sdk.exceptions.RequestException;
 import com.gexin.rp.sdk.http.IGtPush;
 import com.gexin.rp.sdk.template.*;
 import com.gexin.rp.sdk.template.style.Style0;
-import com.gj.modules.model.PushMessage;
+import com.gj.common.vo.msg.PushMessage;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
