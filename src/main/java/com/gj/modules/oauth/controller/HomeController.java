@@ -1,4 +1,4 @@
-package com.gj.demo.funtesting;
+package com.gj.modules.oauth.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

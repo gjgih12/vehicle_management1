@@ -1,5 +1,7 @@
 package com.gj.common.config;
 
+import com.gj.modules.oauth.service.impl.OauthUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private OauthUserDetailsService oauthUserDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         /**
@@ -25,6 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
          */
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER","ADMIN");
+
+        //auth.userDetailsService(oauthUserDetailsService);
+
     }
 
     /**

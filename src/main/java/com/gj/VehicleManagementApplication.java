@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 //@EnableScheduling
 @SpringBootApplication
 //@EnableEncryptableProperties //开启加密注解
-@MapperScan("com.gj.modules.business.mapper")
+@MapperScan("com.gj.modules.*.mapper")
 public class VehicleManagementApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
