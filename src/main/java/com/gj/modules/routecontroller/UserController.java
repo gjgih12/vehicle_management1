@@ -1,4 +1,4 @@
-package com.gj.modules.oauth.controller;
+package com.gj.modules.routecontroller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,11 +13,16 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    @RequestMapping("/user")
+    @RequestMapping("/backHome")
     public String user(@AuthenticationPrincipal Principal principal, Model model){
         model.addAttribute("username", principal.getName());
-        return "user/user";
+        return "index/backHome";
     }
+
+
+
+
+
     @RequestMapping("/admin")
     public String admin(@AuthenticationPrincipal Principal principal, Model model){
         model.addAttribute("username", principal.getName());

@@ -2,11 +2,13 @@ package com.gj.common.config;
 
 import com.gj.modules.oauth.service.impl.OauthUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @author ：gengjian
@@ -24,15 +26,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         /**
          * 在内存中创建一个名为 "user" 的用户，密码为 "pwd"，拥有 "USER" 权限，密码使用BCryptPasswordEncoder加密
          */
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("user").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER");
+        /*auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("user").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER");*/
         /**
          * 在内存中创建一个名为 "admin" 的用户，密码为 "pwd"，拥有 "USER" 和"ADMIN"权限
          */
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER","ADMIN");
+        /*auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER","ADMIN");*/
 
-        //auth.userDetailsService(oauthUserDetailsService);
+        auth.userDetailsService(oauthUserDetailsService).passwordEncoder(passwordEncoder());
 
     }
 
@@ -47,12 +49,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/index","/error","/code/image").permitAll()
-                .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/","/index","/login","/toLogin","/error","/code/image","/index/**","/js/**").permitAll()
+                .anyRequest().authenticated()   // 其他地址的访问均需验证权限
+                //.antMatchers("/user/**").hasRole("USER")
+                //.antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/user")
+                .formLogin().loginPage("/login").defaultSuccessUrl("/backHome") //登录成功默认跳转页
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 }
