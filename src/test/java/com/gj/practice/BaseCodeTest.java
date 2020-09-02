@@ -125,4 +125,16 @@ public class BaseCodeTest {
 
     }
 
+
+    @Test
+    public void ceshi1(){
+        Integer inte = 1;
+        Integer sd = 1;
+        if(sd.equals(inte)){
+            System.out.println("相等");
+        }else{
+            System.out.println("不相等");
+        }
+    }
+
 }
