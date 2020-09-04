@@ -186,13 +186,13 @@ public class BaseCodeTest {
         String str = "qweqwe";
         String[] str2 = {"aa","bb","cc"};
 
-        ceshi5(str2);
+        ceshi5(str,"ee","rr","tt");
     }
 
 
     public void ceshi5(String...des){
 
-        System.out.println(des[1]);
+        System.out.println(des[0]);
     }
 
 
