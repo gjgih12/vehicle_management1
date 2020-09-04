@@ -1,68 +1,46 @@
 package com.gj.demo.funtesting;
 
-import com.gj.common.entity.job.ScheduleJobEntity;
-import com.gj.utils.ScheduleUtils;
-import org.quartz.Scheduler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.gj.common.exception.BusinessException;
+import com.gj.common.msg.ObjectRestResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 功能测试的请求
- * @author gengjian
- * @date 2020/6/14
+ * @author ：gengjian
+ * @date ：Created in 2020/9/4
  */
+@Slf4j
+@RestController("/funTest")
+public class FunTestController {
 
-/*@RestController
-@RequestMapping("/funtest")*/
-@Component  //项目启动直接加载 实现ApplicationRunner 重写run方法
-@ConditionalOnProperty(prefix = "scheduling", name = "enabled2", havingValue = "true") //开关
-public class FunTestController implements ApplicationRunner {
 
-    @Autowired
-    private Scheduler scheduler;
+    @GetMapping("/testException")
+    public ObjectRestResponse testException(){
 
-    /**
-     * 开启一条定时任务
-     */
-    @RequestMapping("/openSchedulerJob")
-    public void openSchedulerJob() {
+        ObjectRestResponse res = new ObjectRestResponse<>();
 
-        ScheduleJobEntity scheduleJobEntity = new ScheduleJobEntity();
-        scheduleJobEntity.setJobId("1232111");
-        scheduleJobEntity.setBeanName("nakedCarController");
-        scheduleJobEntity.setMethodName("addNakedCar");
-        scheduleJobEntity.setParams("");
-        scheduleJobEntity.setCronExpression("0/10 * * * * ? ");
-        scheduleJobEntity.setStatus(0);
+        log.info("1111111111111111111111");
+        log.info("2222222222222222222222");
 
-        ScheduleUtils.createScheduleJob(scheduler, scheduleJobEntity);
+        Integer[] strArr = {12,23};
+        Integer integer;
+        try {
+            integer = ceshi3(strArr);
+            log.info("第三行数据是："+integer);
+        }catch (Exception e){
+            log.error("数据失败:{}",strArr);
+            throw new BusinessException("失败");
+        }
 
+        log.info("444444444444444444444444");
+
+        res.setData(integer);
+
+        return res;
     }
 
-    /**
-     * 关闭定时任务
-     */
-    @RequestMapping("/closeSchedulerJob")
-    public void closeSchedulerJob(){
-
-        ScheduleUtils.deleteScheduleJob(scheduler,"1232111");
-
-    }
-
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        ScheduleJobEntity scheduleJobEntity = new ScheduleJobEntity();
-        scheduleJobEntity.setJobId("1232111");
-        scheduleJobEntity.setBeanName("nakedCarController");
-        scheduleJobEntity.setMethodName("addNakedCar");
-        scheduleJobEntity.setParams("");
-        scheduleJobEntity.setCronExpression("0/10 * * * * ? ");
-        scheduleJobEntity.setStatus(0);
-
-        ScheduleUtils.createScheduleJob(scheduler, scheduleJobEntity);
+    public Integer ceshi3(Integer[] str){
+        return str[5];
     }
 }
