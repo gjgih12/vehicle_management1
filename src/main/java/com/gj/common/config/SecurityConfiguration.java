@@ -54,9 +54,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/user/**").hasRole("USER")
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/backHome") //登录成功默认跳转页
+                .formLogin().loginPage("/toLogin")
+                .loginProcessingUrl("/login")    //自定义表单请求路径
+                .defaultSuccessUrl("/backHome")  //登录成功默认跳转页
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/toLogin");
     }
 
     @Bean

@@ -1,9 +1,9 @@
 package com.gj.demo.funtesting;
 
-import com.gj.common.exception.BusinessException;
 import com.gj.common.msg.ObjectRestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date ：Created in 2020/9/4
  */
 @Slf4j
-@RestController("/funTest")
+@RestController
+@RequestMapping("/funTest")
 public class FunTestController {
 
 
@@ -30,13 +31,16 @@ public class FunTestController {
             log.info("第三行数据是："+integer);
         }catch (Exception e){
             log.error("数据失败:{}",strArr);
-            throw new BusinessException("失败");
+            //throw new BusinessException("失败");
+            res.setStatus(501);
+            res.setMessage("参数错误");
+            res.setData(strArr);
+            return res;
         }
 
         log.info("444444444444444444444444");
 
-        res.setData(integer);
-
+        res.setData(strArr);
         return res;
     }
 

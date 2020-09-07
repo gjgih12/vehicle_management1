@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 /*@RestController
-@RequestMapping("/funtest")*/
+@RequestMapping("/funtest1")*/
 @Component  //项目启动直接加载 实现ApplicationRunner 重写run方法
 @ConditionalOnProperty(prefix = "scheduling", name = "enabled2", havingValue = "true") //开关
 public class JobTestController implements ApplicationRunner {
