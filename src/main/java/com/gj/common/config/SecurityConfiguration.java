@@ -49,14 +49,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/index","/login","/toLogin","/error","/code/image","/index/**","/js/**").permitAll()
+                .antMatchers("/","/index","/login","/toLogin","/error","/code/image","/index/**","/js/**").permitAll()//这些路径都是放开的
                 .anyRequest().authenticated()   // 其他地址的访问均需验证权限
                 //.antMatchers("/user/**").hasRole("USER")
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .formLogin().loginPage("/toLogin")
-                .loginProcessingUrl("/login")    //自定义表单请求路径
-                .defaultSuccessUrl("/backHome")  //登录成功默认跳转页
+                .loginProcessingUrl("/login")    //自定义登录表单请求路径
+                .defaultSuccessUrl("/backHome")  //登录成功默认跳转页路径
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/toLogin");
     }
