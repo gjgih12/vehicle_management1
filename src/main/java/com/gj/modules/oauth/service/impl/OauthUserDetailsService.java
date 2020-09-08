@@ -1,6 +1,7 @@
 package com.gj.modules.oauth.service.impl;
 
 import com.gj.common.vo.security.BaseUserVO;
+import com.gj.modules.oauth.CustomUsernameNotFoundException;
 import com.gj.modules.oauth.mapper.BaseUserMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,13 @@ public class OauthUserDetailsService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if(StringUtils.isBlank(account)){
-            throw new UsernameNotFoundException("账号输入为空");
+            throw new CustomUsernameNotFoundException("账号输入为空");
         }
 
         BaseUserVO baseUserVO = baseUserMapper.getBaseUserByUserNameOrMobilePhone(account);
 
         if(baseUserVO == null){
-            throw new UsernameNotFoundException("账户不存在");
+            throw new CustomUsernameNotFoundException("账户不存在");
         }
         //Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 
