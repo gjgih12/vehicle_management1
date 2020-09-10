@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -311,6 +312,15 @@ public class StringTest {
             mapper = new ObjectMapper();
         }
         return mapper;
+    }
+
+    @Test
+    public void linShi8(){
+
+        String str = "qweqweqewqe,12213";
+        //返回仅包含指定对象的不可变列表
+        System.out.println(Collections.singletonList(str));
+
     }
 
 
