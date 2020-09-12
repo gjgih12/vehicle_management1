@@ -6,7 +6,7 @@
      mapper 需要与映射接口对应
      namespace 配置类的全限定名
  -->
-<mapper namespace="com.gj.modules.mapper.NakedCarMapper">
+<mapper namespace="com.gj.modules.business.mapper.NakedCarMapper">
 
     <sql id="selectSql">
         <!--<if test="nakedCar.cBrand != null and nakedCar.cBrand != ''">
@@ -18,7 +18,7 @@
         </if>
     </sql>
 
-    <select id="nakedCarMapper" resultType="com.gj.modules.model.NakedCarEntity">
+    <select id="nakedCarMapper" resultType="com.gj.common.entity.car.NakedCarEntity">
         SELECT
           id AS id,
           c_brand AS cBrand,
@@ -44,13 +44,13 @@
         </include>
     </select>
 
-    <insert id="addNakedCar" parameterType="com.gj.modules.model.NakedCarEntity">
+    <insert id="addNakedCar" parameterType="com.gj.common.entity.car.NakedCarEntity">
       INSERT INTO t_car ( c_brand, c_name,c_color,c_type,c_price,c_local,c_date,create_time,update_time )
                        VALUES
                        ( #{nakedCar.cBrand}, #{nakedCar.cName},#{nakedCar.cColor},#{nakedCar.cType},#{nakedCar.cPrice},#{nakedCar.cLocal},#{nakedCar.cDate},now(),now())
     </insert>
 
-    <select id="oneNakedCar" parameterType="Integer" resultType="com.gj.modules.model.NakedCarEntity">
+    <select id="oneNakedCar" parameterType="Integer" resultType="com.gj.common.entity.car.NakedCarEntity">
         SELECT
         id AS id,
         c_brand AS cBrand,
@@ -69,7 +69,7 @@
         </if>
     </select>
 
-    <update id="updNakedCar" parameterType="com.gj.modules.model.NakedCarEntity">
+    <update id="updNakedCar" parameterType="com.gj.common.entity.car.NakedCarEntity">
       UPDATE t_car SET
       c_brand= #{nakedCar.cBrand}, c_name= #{nakedCar.cName},c_color= #{nakedCar.cColor},
       c_type= #{nakedCar.cType},c_price= #{nakedCar.cPrice},c_local= #{nakedCar.cLocal},c_date= #{nakedCar.cDate}

@@ -1,22 +1,23 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
     <title>炫酷科技粒子动画登录页面html</title>
 
 
     <!-- 引入jquery -->
     <script type="text/javascript" src="http://www.bootstrapmb.com/content/js/jquery.min.js"></script>
     <!--必要样式-->
-    <link href="./index/css/styles.css" rel="stylesheet" type="text/css" />
-    <link href="./index/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="./index/css/loaders.css" rel="stylesheet" type="text/css" />
+    <link href="./index/css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="./index/css/demo.css" rel="stylesheet" type="text/css"/>
+    <link href="./index/css/loaders.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class='login'>
@@ -24,41 +25,50 @@
         <span>管理员登录</span>
     </div>
     <div class='login_fields'>
-        <div class='login_fields__user'>
-            <div class='icon'>
-                <img alt="" src='./index/img/user_icon_copy.png' />
+        <form th:action="@{/login}" method="post">
+            <div class='login_fields__user'>
+                <div class='icon'>
+                    <img alt="" src='./index/img/user_icon_copy.png'/>
+                </div>
+                <input name="username" placeholder='用户名' maxlength="16" type='text' autocomplete="off"/>
+                <div class='validation'>
+                    <img alt="" src='./index/img/tick.png'/>
+                </div>
             </div>
-            <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" />
-            <div class='validation'>
-                <img alt="" src='./index/img/tick.png' />
+            <div class='login_fields__password'>
+                <div class='icon'>
+                    <img alt="" src='./index/img/lock_icon_copy.png'/>
+                </div>
+                <input name="password" placeholder='密码' maxlength="16" type='text' autocomplete="off"/>
+                <div class='validation'>
+                    <img alt="" src='./index/img/tick.png'/>
+                </div>
             </div>
-        </div>
-        <div class='login_fields__password'>
-            <div class='icon'>
-                <img alt="" src='./index/img/lock_icon_copy.png' />
+            <div class='login_fields__password'>
+                <div class='icon'>
+                    <img alt="" src='./index/img/key.png'/>
+                </div>
+                <input name="imageCode" placeholder='验证码' maxlength="4" type='text'/>
+                <!--name="ValidateNum" autocomplete="off"-->
+                <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
+                    <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+                </div>
             </div>
-            <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off" />
-            <div class='validation'>
-                <img alt="" src='./index/img/tick.png' />
+            <div th:if="${param.error}">
+                <p style="text-align: center" class="text-danger">登录失败，账号或密码错误!</p>
             </div>
-        </div>
-        <div class='login_fields__password'>
-            <div class='icon'>
-                <img alt="" src='./index/img/key.png' />
+            <div th:if="${result}">
+                <p style="text-align: center" class="text-success" th:text="${result}"></p>
             </div>
-            <input name="code" placeholder='验证码' maxlength="4" type='text' /><!--name="ValidateNum" autocomplete="off"-->
-            <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-                <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+            <div class='login_fields__submit'>
+                <input type="submit" value="登录"/>
             </div>
-        </div>
-        <div class='login_fields__submit'>
-            <input type='button' value='登录' />
-        </div>
+        </form>
     </div>
     <div class='success'>
     </div>
     <div class='disclaimer'>
-        <p>&copy; 2019 www.bootstrapmb.com</p>
+        <p>&copy; 2020 www.gengjian.com</p>
     </div>
 </div>
 <div class='authent'>
@@ -90,6 +100,7 @@
 
     var CodeVal = 0;
     Code();
+
     function Code() {
         if (canGetCookie == 1) {
             createCode("AdminCode");
@@ -99,6 +110,7 @@
             showCheck(createCode(""));
         }
     }
+
     function showCheck(a) {
         CodeVal = a;
         var c = document.getElementById("myCanvas");
@@ -108,6 +120,7 @@
         ctx.fillStyle = "#E8DFE8";
         ctx.fillText(a, 0, 100);
     }
+
     $(document).keypress(function (e) {
         // 回车键事件
         if (e.which == 13) {
@@ -123,10 +136,10 @@
         $(this).attr('type', 'password');
     });
     $('input[type="text"]').focus(function () {
-        $(this).prev().animate({ 'opacity': '1' }, 200);
+        $(this).prev().animate({'opacity': '1'}, 200);
     });
     $('input[type="text"],input[type="password"]').blur(function () {
-        $(this).prev().animate({ 'opacity': '.5' }, 200);
+        $(this).prev().animate({'opacity': '.5'}, 200);
     });
     $('input[name="login"],input[name="pwd"]').keyup(function () {
         var Len = $(this).val().length;
@@ -162,19 +175,19 @@
                 $('.login').addClass('testtwo'); //平移特效
             }, 300);
             setTimeout(function () {
-                $('.authent').show().animate({ right: -320 }, {
+                $('.authent').show().animate({right: -320}, {
                     easing: 'easeOutQuint',
                     duration: 600,
                     queue: false
                 });
-                $('.authent').animate({ opacity: 1 }, {
+                $('.authent').animate({opacity: 1}, {
                     duration: 200,
                     queue: false
                 }).addClass('visible');
             }, 500);
 
             //登录
-            var JsonData = { login: login, pwd: pwd, code: code };
+            var JsonData = {login: login, pwd: pwd, code: code};
             //此处做为ajax内部判断
             var url = "";
             if (JsonData.login == truelogin && JsonData.pwd == truepwd && JsonData.code.toUpperCase() == CodeVal.toUpperCase()) {
@@ -192,12 +205,12 @@
                     //ajax返回
                     //认证完成
                     setTimeout(function () {
-                        $('.authent').show().animate({ right: 90 }, {
+                        $('.authent').show().animate({right: 90}, {
                             easing: 'easeOutQuint',
                             duration: 600,
                             queue: false
                         });
-                        $('.authent').animate({ opacity: 0 }, {
+                        $('.authent').animate({opacity: 0}, {
                             duration: 200,
                             queue: false
                         }).addClass('visible');
@@ -237,13 +250,13 @@
             url: 'Ajax/Login',
             status: 200,
             responseTime: 50,
-            responseText: { "Status": "ok", "Text": "登录成功<br /><br />欢迎回来" }
+            responseText: {"Status": "ok", "Text": "登录成功<br /><br />欢迎回来"}
         });
         $.mockjax({
             url: 'Ajax/LoginFalse',
             status: 200,
             responseTime: 50,
-            responseText: { "Status": "Erro", "Erro": "账号名或密码或验证码有误" }
+            responseText: {"Status": "Erro", "Erro": "账号名或密码或验证码有误"}
         });
     }
 </script>

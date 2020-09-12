@@ -1,16 +1,12 @@
 package com.gj.common.filter;
 
-import com.gj.modules.controller.ValidateCodeController;
-import com.gj.modules.controller.ValidateCodeController;
+import com.gj.modules.oauth.controller.ValidateCodeController;
 import com.gj.common.exception.ValidateCodeException;
-import com.gj.modules.model.ImageCode;
+import com.gj.common.vo.security.ImageCode;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;

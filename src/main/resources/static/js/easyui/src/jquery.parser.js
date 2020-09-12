@@ -132,7 +132,7 @@
     });
 
     /**
-     * extend plugin to set box model width
+     * extend plugin to set box entity width
      */
     $.fn._outerWidth = function (width) {
         if (width == undefined) {
@@ -145,7 +145,7 @@
     };
 
     /**
-     * extend plugin to set box model height
+     * extend plugin to set box entity height
      */
     $.fn._outerHeight = function (height) {
         if (height == undefined) {

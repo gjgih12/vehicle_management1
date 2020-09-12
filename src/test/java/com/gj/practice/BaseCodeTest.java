@@ -1,12 +1,18 @@
 package com.gj.practice;
 
+import com.gj.common.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author gengjian
  * @date 2019/12/29
  */
+@Slf4j
 public class BaseCodeTest {
 
     //定义变量
@@ -124,5 +130,73 @@ public class BaseCodeTest {
         //System.out.println(diff);
 
     }
+
+
+    @Test
+    public void ceshi1(){
+        Integer inte = 1;
+        Integer sd = 1;
+        if(sd.equals(inte)){
+            System.out.println("相等");
+        }else{
+            System.out.println("不相等");
+        }
+    }
+
+    /**
+     * 获取异常
+     */
+    @Test
+    public void ceshi2(){
+
+        System.out.println(1);
+        System.out.println(2);
+
+        Integer[] strArr = {12,23};
+        try {
+            Integer integer = ceshi3(strArr);
+            System.out.println("第三行数据是："+integer);
+        }catch (Exception e){
+            log.error("数据失败:{},自定义：{}",strArr,"sdhuid");
+            throw new BusinessException("失败");
+        }
+
+        System.out.println(4);
+
+
+    }
+
+    @Test
+    public Integer ceshi3(Integer[] str){
+        return str[5];
+    }
+
+
+
+    @Test
+    public void ceshi4(){
+
+        //正则
+        Matcher m= Pattern.compile("\\{(\\d)\\}").matcher("您的退款申请被拒绝");
+
+        //含有数字的{}就成立 m.group()拿到{}
+        while (m.find()) {
+            System.out.println(m.group());
+        }
+
+
+        String str = "qweqwe";
+        String[] str2 = {"aa","bb","cc"};
+
+        ceshi5(str,"ee","rr","tt");
+    }
+
+
+    public void ceshi5(String...des){
+
+        System.out.println(des[0]);
+    }
+
+
 
 }

@@ -1,13 +1,19 @@
 package com.gj.practice;
 
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gj.testpojo.CarDemo;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * String的常用方法
@@ -148,6 +154,44 @@ public class StringTest {
     }
 
     @Test
+    public void Lingshi1(){
+        String[] str = {"gggggg"};
+        Lingshi2("sda","fffff");
+    }
+
+    public void Lingshi2(String st,String...str){
+
+        String description = "您的退款申请被拒绝。";
+        Matcher m= Pattern.compile("\\{(\\d)\\}").matcher(description);
+        while(m.find()){
+            description=description.replace(m.group(),str[Integer.parseInt(m.group(1))]);
+        }
+        StringBuffer s4 = new StringBuffer();
+
+        System.out.println(str[0]);
+    }
+
+
+    @Test
+    public void Lingshi3(){
+        CarDemo carDemo;
+        carDemo = Lingshi3dd();
+        System.out.println("第一次"+carDemo);
+        carDemo = Lingshi3dd2();
+        carDemo.setcId(66);
+        System.out.println("第二次"+carDemo);
+
+    }
+
+    public CarDemo Lingshi3dd(){
+        CarDemo carDemo = new CarDemo();
+        carDemo.setcId(123);
+        carDemo.setName("都");
+        carDemo.setAge(1);
+        carDemo.setSort(12);
+        return carDemo;
+    }
+    @Test
     public void LingShi22(){
 
         List<String> strList = new ArrayList<>();
@@ -208,6 +252,85 @@ public class StringTest {
 
     }
 
+
+    public CarDemo Lingshi3dd2(){
+        CarDemo carDemo = new CarDemo();
+        carDemo.setName("哈哈");
+        return carDemo;
+    }
+
+
+    @Test
+    public void Lingshi4(){
+        List<Integer> intList = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<List<Integer>> subSets = Lists.partition(intList, 3);
+
+        System.out.println("1111111111:::"+subSets.get(0));
+        System.out.println("222222222:::"+subSets.get(1));
+        System.out.println("333333333:::"+subSets.get(2));
+
+    }
+
+    @Test
+    public void Lingshi5(){
+        char a = 'A';
+        for (int i = 0; i < 15; i++) {
+            System.out.println(a++);
+        }
+
+    }
+
+    @Test
+    public void Lingshi6(){
+        String a = "sd";
+        String b = "sdfwefdcs";
+        if(b.startsWith(a)){
+            System.out.println("是");
+        }else{
+            System.out.println("否");
+        }
+
+    }
+
+    private static ObjectMapper mapper;
+
+    @Test
+    public void Lingshi7(){
+
+        CarDemo carDemo = new CarDemo();
+        carDemo.setcId(1);
+        carDemo.setName("大苏打");
+        carDemo.setAge(23);
+        carDemo.setSort(3);
+        System.out.println("对象"+carDemo);
+
+        ObjectMapper objectMapper = getMapperInstance(false);
+        try {
+            String json = objectMapper.writeValueAsString(carDemo);
+            System.out.println("JSON"+json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static ObjectMapper getMapperInstance(boolean createNew) {
+        if (createNew) {
+            return new ObjectMapper();
+        } else if (mapper == null) {
+            mapper = new ObjectMapper();
+        }
+        return mapper;
+    }
+
+    @Test
+    public void linShi8(){
+
+        String str = "qweqweqewqe,12213";
+        //返回仅包含指定对象的不可变列表
+        System.out.println(Collections.singletonList(str));
+
+    }
 
 
 }

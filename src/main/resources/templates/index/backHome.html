@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<h1>后台管理首页</h1>
+<h3>登录成功的页面，需要USER权限（目前只要登录成功就可访问）</h3>
+<p>已经成功登陆，你的用户名是：</p>
+<p th:text="${username}" style="margin-top: 25px; color: crimson">wxb</p>
+<form th:action="@{/logout}" method="post">
+    <button class="btn btn-danger" style="margin-top: 20px">退出登录</button>
+</form>
+<a href="/vehicle_management/index">网站主页</a>
+<a href="/vehicle_management/backHome">后台管理首页</a>
+<a href="/vehicle_management/admin">管理员页面</a>
+<a href="/vehicle_management/login">登录页面</a>
+</body>
+</html>
