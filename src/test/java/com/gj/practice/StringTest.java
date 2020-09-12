@@ -199,6 +199,15 @@ public class StringTest {
 
     }
 
+    @Test
+    public void LingShi25(){
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println(1+(int)(Math.random()*3));
+        }
+
+    }
+
 
 
 }
