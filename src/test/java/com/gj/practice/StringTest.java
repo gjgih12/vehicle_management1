@@ -243,6 +243,15 @@ public class StringTest {
 
     }
 
+    @Test
+    public void LingShi25(){
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println(1+(int)(Math.random()*2));
+        }
+
+    }
+
 
     public CarDemo Lingshi3dd2(){
         CarDemo carDemo = new CarDemo();
@@ -320,6 +329,14 @@ public class StringTest {
         String str = "qweqweqewqe,12213";
         //返回仅包含指定对象的不可变列表
         System.out.println(Collections.singletonList(str));
+
+    }
+
+    @Test
+    public void linShi26(){
+
+        Integer[] strArr = {123,213,23,4,5};
+        System.out.println(strArr[strArr.length-7]);
 
     }
 
