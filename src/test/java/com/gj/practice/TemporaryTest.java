@@ -152,4 +152,27 @@ public class TemporaryTest {
     }
 
 
+    @Test
+    public void test5(){
+
+    List<String> list = Arrays.asList("1");
+
+        System.out.println("前"+list);
+
+        if(list!=null&&list.size()>0){
+            StringBuffer stringBuffer = new StringBuffer();
+
+            for (String s : list) {
+                stringBuffer.append(","+s);
+            }
+            System.out.println(stringBuffer.substring(1));
+        }else{
+            System.out.println("nonononononono");
+        }
+
+
+
+    }
+
+
 }
