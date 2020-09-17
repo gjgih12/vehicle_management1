@@ -1,6 +1,7 @@
 package com.gj.practice;
 
 import com.gj.testpojo.CarDemo;
+import com.gj.testpojo.StudentDemo;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.CollectionUtils;
 
@@ -123,6 +124,31 @@ public class TemporaryTest {
 
         System.out.println(carDemos);
 
+    }
+
+
+    @Test
+    public void test4(){
+
+        List<CarDemo> str;
+
+        str = diaoTest4();
+
+        StudentDemo studentDemo = new StudentDemo();
+        studentDemo.setId("123");
+        studentDemo.setName("的话我都");
+        studentDemo.setStuCarDemo(str);
+
+        System.out.println(studentDemo);
+
+    }
+
+
+    public List<CarDemo> diaoTest4(){
+
+        List<CarDemo> list = null;
+
+        return list;
     }
 
 
