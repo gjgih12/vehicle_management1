@@ -23,7 +23,7 @@ public class MinIoTest {
     public  String  getUrl(){
         try {
             MinioClient minioClient = new MinioClient(url, accessKey, secretKey);
-            String url = minioClient.presignedGetObject("prod", "/temp/20200916/8c35285ae81efdc91cf6735d9da29904.mp4");
+            String url = minioClient.getObjectUrl("test", "/test/temp/20200610/e8d56335aa3438f268215b3b611795e8.png");
             return url;
         }catch (Exception e){
             return "获取失败";
