@@ -2,9 +2,11 @@ package com.gj.modules.business.mapper;
 
 import com.gj.common.entity.car.NakedCarEntity;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface NakedCarMapper {
 
 

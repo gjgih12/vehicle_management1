@@ -1,14 +1,14 @@
 package com.gj.practice;
 
+import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.testpojo.CarDemo;
 import com.gj.testpojo.StudentDemo;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
  * @date ：Created in 2020/9/4
  */
 public class TemporaryTest {
+
+    @Autowired
+    private NakedCarMapper nakedCarMapper;
 
     @Test
     public void linshi1(){
@@ -170,9 +173,54 @@ public class TemporaryTest {
             System.out.println("nonononononono");
         }
 
+    }
+
+    @Test
+    public void test6(){
+
+        StudentDemo studentDemo = new StudentDemo();
+
+        ArrayList<StudentDemo> list = new ArrayList<>();
+        ArrayList<StudentDemo> list2 = null;
+        //list.add(studentDemo);
+
+        Assert.notEmpty(list,"kong");
+
+        System.out.println("结束");
 
 
     }
 
+    @Test
+    public void test7(){
+        StudentDemo studentDemo = new StudentDemo();
+        StudentDemo studentDemo2 = null;
+        //Assert.notNull(studentDemo,"kong");
+        if(studentDemo==null){
+            System.out.println("对象为空");
+        }else{
+            System.out.println("结束");
+        }
+
+
+    }
+
+    @Test
+    public void test8(){
+        String str = "";
+        String str2 = null;
+        Assert.notNull(str,"kong");
+        System.out.println("结束");
+    }
+
+    @Test
+    public void test9(){
+        HashMap<String, String> stringStringHashMap = null;
+        if(stringStringHashMap==null){
+            System.out.println("空map");
+        }else{
+            System.out.println("有");
+        }
+    }
 
 }

@@ -1,7 +1,12 @@
 package com.gj.demo.funtesting;
 
+import com.gj.common.entity.car.NakedCarEntity;
 import com.gj.common.msg.ObjectRestResponse;
+import com.gj.modules.business.mapper.NakedCarMapper;
+import com.gj.modules.business.service.NakedCarService;
+import com.gj.utils.RestResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/funTest")
 public class FunTestController {
 
+    @Autowired
+    private NakedCarMapper nakedCarMapper;
+    @Autowired
+    private NakedCarService nakedCarService;
 
     @GetMapping("/testException")
     public ObjectRestResponse testException(){
@@ -47,4 +56,27 @@ public class FunTestController {
     public Integer ceshi3(Integer[] str){
         return str[5];
     }
+
+    @RequestMapping("/testObject")
+    public String testObject(Integer data){
+
+        NakedCarEntity nakedCarEntity = new NakedCarEntity();
+        nakedCarEntity.setcBrand(data.toString());
+
+        RestResponse restResponse = nakedCarService.queryNakedCar(0, 10, nakedCarEntity);
+
+        restResponse.get("rows");
+
+        if(restResponse.get("rows")==null){
+            return "集合为空";
+        }
+
+        //NakedCarEntity nakedCarEntity = nakedCarService.oneNakedCar(data);
+        /*if(nakedCarEntity==null){
+            return "对象为空";
+        }*/
+        return  restResponse.get("rows").toString();
+    }
+
+
 }
