@@ -22,9 +22,9 @@ import java.net.URLEncoder;
 @RequestMapping("/minio")
 public class MinIoController {
 
-    private static String url = "https://elearning.jinmaowy.com/minio/";  //minio服务的IP端口
-    private static String accessKey = "elearning";
-    private static String secretKey = "cOE3terjFbBr&haW";
+    private static String url = "http://192.168.6.128:9000";  //minio服务的IP端口
+    private static String accessKey = "minioadmin";
+    private static String secretKey = "minioadmin";
 
     @RequestMapping("/getUrl")
     public  String  getUrl(){
@@ -43,11 +43,11 @@ public class MinIoController {
         InputStream in = null;
         try {
             MinioClient minioClient = new MinioClient(url, accessKey, secretKey);
-            ObjectStat stat = minioClient.statObject("test", fileName);
+            ObjectStat stat = minioClient.statObject("geng", fileName);
             response.setContentType(stat.contentType());
             response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
 
-            in = minioClient.getObject("test", fileName);
+            in = minioClient.getObject("geng", fileName);
             IOUtils.copy(in, response.getOutputStream());
         } catch (Exception e) {
             log.error(e.getMessage());
