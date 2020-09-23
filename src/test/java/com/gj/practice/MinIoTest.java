@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
  */
 public class MinIoTest {
 
-    private static String url = "https://elearning.jinmaowy.com/minio";  //minio服务的IP端口
-    private static String accessKey = "elearning";
-    private static String secretKey = "cOE3terjFbBr&haW";
+    private static String url = "http://192.168.6.128:9000";  //minio服务的IP端口
+    private static String accessKey = "minioadmin";
+    private static String secretKey = "minioadmin";
 
     @Test
     public void test01(){
@@ -23,7 +23,7 @@ public class MinIoTest {
     public  String  getUrl(){
         try {
             MinioClient minioClient = new MinioClient(url, accessKey, secretKey);
-            String url = minioClient.getObjectUrl("test", "/test/temp/20200610/e8d56335aa3438f268215b3b611795e8.png");
+            String url = minioClient.getObjectUrl("geng", "41adf3bcf0fb44bd9e026adeb4d88eea.jpeg");
             return url;
         }catch (Exception e){
             return "获取失败";
