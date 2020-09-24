@@ -1,6 +1,14 @@
 package com.gj.demo.filepart;
 
+
+import lombok.SneakyThrows;
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author gengjian
@@ -8,15 +16,51 @@ import java.io.*;
  */
 public class SplitFile {
 
-    public static void main(String[] args) throws IOException {
-        getSplitFile();
-        String file = SplitFileParam.file; //文件的路径
-        RandomAccessFile raf = null;
-        raf = new RandomAccessFile(new File(file), "r");
-        long length = raf.length();//文件的总长度
-        long maxSize = SplitFileParam.maxSize;//文件切片后的长度
-        long count = length/maxSize; //文件分割的份数
-        merge(SplitFileParam.outfile,SplitFileParam.file,count);
+    @SneakyThrows
+    public static void main(String[] args) throws IOException, InterruptedException {
+//        getSplitFile();
+//        String file = SplitFileParam.file; //文件的路径
+//        RandomAccessFile raf = null;
+//        raf = new RandomAccessFile(new File(file), "r");
+//        long length = raf.length();//文件的总长度
+//        long maxSize = SplitFileParam.maxSize;//文件切片后的长度
+//        long count = length/maxSize; //文件分割的份数
+        merge(SplitFileParam.outfile,SplitFileParam.file,3);
+
+        //mergePartFiles("D:\\FileDemo",".tmp",307200,"ddd.mp4");
+
+        /*ystem.out.println(FileUtil.currentWorkDir);
+
+        StringBuilder sb = new StringBuilder();
+
+        long originFileSize = 1024 * 1024 * 100;// 100M
+        int blockFileSize = 1024 * 1024 * 30;// 35M
+
+        // 生成一个大文件
+        for (int i = 0; i < originFileSize; i++) {
+            sb.append("A");
+        }
+
+        String fileName = FileUtil.currentWorkDir + "abc.mp4";
+        System.out.println(fileName);
+        System.out.println(FileUtil.write(fileName, sb.toString()));
+
+        // 追加内容
+        sb.setLength(0);
+        sb.append("0123456789");
+        FileUtil.append(fileName, sb.toString());*/
+
+        //FileUtil fileUtil = new FileUtil();
+
+        // 将origin.myfile拆分
+        //List<String> strings = fileUtil.splitBySize(fileName, blockFileSize);
+
+        //Thread.sleep(10000);// 稍等10秒，等前面的小文件全都写完
+
+        // 合并成新文件
+        //fileUtil.mergePartFiles(FileUtil.currentWorkDir, ".part",
+          //      1024 * 1024 * 30, FileUtil.currentWorkDir + "ddd.mp4");
+
 
 
 
@@ -76,7 +120,7 @@ public class SplitFile {
             //申明文件切割后的文件磁盘
             RandomAccessFile in = new RandomAccessFile(new File(file), "r");
             //定义一个可读，可写的文件并且后缀名为.tmp的二进制文件
-            RandomAccessFile out = new RandomAccessFile(new File(a + "_" + i + ".tmp"), "rw");
+            RandomAccessFile out = new RandomAccessFile(new File(a + "_" + i + ".mp4"), "rw");
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -123,7 +167,7 @@ public class SplitFile {
             //开始合并文件，对应切片的二进制文件
             for (int i = 0; i < count + 1; i++) {
                 //读取切片文件
-                RandomAccessFile reader = new RandomAccessFile(new File(a + "_" + i + ".tmp"), "r");
+                RandomAccessFile reader = new RandomAccessFile(new File(a + "_" + i + ".mp4"), "r");
                 byte[] b = new byte[1024];
                 int n = 0;
                 //先读后写
@@ -141,4 +185,28 @@ public class SplitFile {
             }
         }
     }
+
+    public static void mergePartFiles(String dirPath, String partFileSuffix,
+                                      int partFileSize, String mergeFileName) throws IOException {
+        ArrayList<File> partFiles = FileUtil.getDirFiles(dirPath,
+                partFileSuffix);
+        Collections.sort(partFiles, new FileComparator());
+
+        RandomAccessFile randomAccessFile = new RandomAccessFile(mergeFileName,
+                "rw");
+        randomAccessFile.setLength(partFileSize * (partFiles.size() - 1)
+                + partFiles.get(partFiles.size() - 1).length());
+        randomAccessFile.close();
+
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
+                partFiles.size(), partFiles.size() * 3, 1, TimeUnit.SECONDS,
+                new ArrayBlockingQueue<Runnable>(partFiles.size() * 2));
+
+        for (int i = 0; i < partFiles.size(); i++) {
+            threadPool.execute(new MergeRunnable(i * partFileSize,
+                    mergeFileName, partFiles.get(i)));
+        }
+
+    }
+
 }

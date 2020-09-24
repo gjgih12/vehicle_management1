@@ -223,4 +223,13 @@ public class TemporaryTest {
         }
     }
 
+    @Test
+    public void test10(){
+
+        String str = "dwd2e/e2d/e3.mp4";
+
+        System.out.println(str.substring(str.lastIndexOf("/")+1));
+
+    }
+
 }
