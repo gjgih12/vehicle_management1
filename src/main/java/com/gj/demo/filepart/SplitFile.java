@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +26,8 @@ public class SplitFile {
 //        long length = raf.length();//文件的总长度
 //        long maxSize = SplitFileParam.maxSize;//文件切片后的长度
 //        long count = length/maxSize; //文件分割的份数
-        merge(SplitFileParam.outfile,SplitFileParam.file,3);
+        //merge(SplitFileParam.outfile,SplitFileParam.file,140);
+        merge2(SplitFileParam.outfile,SplitFileParam.file,140);
 
         //mergePartFiles("D:\\FileDemo",".tmp",307200,"ddd.mp4");
 
@@ -120,7 +122,7 @@ public class SplitFile {
             //申明文件切割后的文件磁盘
             RandomAccessFile in = new RandomAccessFile(new File(file), "r");
             //定义一个可读，可写的文件并且后缀名为.tmp的二进制文件
-            RandomAccessFile out = new RandomAccessFile(new File(a + "_" + i + ".mp4"), "rw");
+            RandomAccessFile out = new RandomAccessFile(new File(a + "_" + i + ".tmp"), "rw");
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -165,9 +167,9 @@ public class SplitFile {
             //申明随机读取文件RandomAccessFile
             raf = new RandomAccessFile(new File(file), "rw");
             //开始合并文件，对应切片的二进制文件
-            for (int i = 0; i < count + 1; i++) {
+            for (int i = 1; i <= count + 1; i++) {
                 //读取切片文件
-                RandomAccessFile reader = new RandomAccessFile(new File(a + "_" + i + ".mp4"), "r");
+                RandomAccessFile reader = new RandomAccessFile(new File(a + "_" + i + ".tmp"), "r");
                 byte[] b = new byte[1024];
                 int n = 0;
                 //先读后写
@@ -207,6 +209,41 @@ public class SplitFile {
                     mergeFileName, partFiles.get(i)));
         }
 
+    }
+
+    public static void merge2(String file, String tempFile, long count) {
+        //创建源
+        File dest = new File(file);
+        //选择流
+        BufferedOutputStream bos = null; //输出流
+        SequenceInputStream sis = null;//输入流
+        //创建一个容器
+        Vector<InputStream> vi = new Vector<InputStream>();
+        String a = tempFile.split(".mp4")[0];
+        try {
+            for (int i = 1; i <= count + 1; i++) {
+                vi.add(new BufferedInputStream(new FileInputStream(new File(a + "_" + i + ".tmp"))));
+            }
+            bos = new BufferedOutputStream(new FileOutputStream(dest, true)); //追加
+            sis = new SequenceInputStream(vi.elements());
+            //缓冲区
+            byte[] flush = new byte[1024];
+            //接收长度
+            int len = 0;
+            while (-1 != (len = sis.read(flush))) {
+                bos.write(flush, 0, len);
+            }
+            bos.flush();
+
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                bos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
