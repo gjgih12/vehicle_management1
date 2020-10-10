@@ -13,4 +13,14 @@ scheduling:
   enabled: false
   enabled2: false
 
+#对象存储
+oss:
+  type: 1
+  domain: https://gengjian-vehicle.oss-cn-beijing.aliyuncs.com
+  prefix: test
+  endPoint: oss-cn-beijing.aliyuncs.com
+  accessKeyId: LTAI4GCoemjtNXyWRVoQwe39
+  accessKeySecret: wEqPRNtSLxjFf42AsXpoB7tEQeBzoR
+  bucketName: gengjian-vehicle
+
 
