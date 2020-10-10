@@ -27,15 +27,7 @@ public class OssController {
     @Autowired
     UidGenerator uidGenerator;
 
-    @GetMapping("/aa")
-    public Object aa(){
-        ObjectRestResponse<Object> res = new ObjectRestResponse<>();
-        res.setData("111");
-        return res;
-    }
-
-
-    @GetMapping("/upload")
+    @PostMapping("/upload")
     public Object upload (
 //        HttpServletRequest request,
         @RequestParam("file") MultipartFile file,

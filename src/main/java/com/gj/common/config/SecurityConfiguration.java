@@ -61,6 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")    //自定义登录表单请求路径
                 .defaultSuccessUrl("/backHome")  //登录成功默认跳转页路径
                 .and()
+                .csrf().disable()   //关闭 CSRF 保护(不然不验证token的话post请求403)
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/toLogin");
     }
 
