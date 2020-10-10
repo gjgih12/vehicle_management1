@@ -3,7 +3,7 @@ package com.gj.modules.business.service.impl;
 import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.common.entity.car.NakedCarEntity;
 import com.gj.modules.business.service.NakedCarService;
-import com.gj.utils.RestResponse;
+import com.gj.common.msg.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -12,15 +12,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
+@RestController
 @RequestMapping("/oss")
 @Slf4j
 public class OssController {
@@ -30,27 +27,34 @@ public class OssController {
     @Autowired
     UidGenerator uidGenerator;
 
+    @GetMapping("/aa")
+    public Object aa(){
+        ObjectRestResponse<Object> res = new ObjectRestResponse<>();
+        res.setData("111");
+        return res;
+    }
 
-    @PostMapping("/upload")
-    @ResponseBody
+
+    @GetMapping("/upload")
     public Object upload (
-        HttpServletRequest request,
+//        HttpServletRequest request,
         @RequestParam("file") MultipartFile file,
         @RequestParam(value = "type", required = false) String type
     ) throws Exception {
         if (file.isEmpty()) {
             throw new BusinessException("上传文件不能为空");
         }
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        /*boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (!isMultipart) {
             throw new BusinessException("上传文件不能为空");
-        }
+        }*/
         if (StringUtils.isEmpty(type)) {
             type = "temp";
         }
 
         String originalFileName = file.getOriginalFilename();
-        String fileNameMd5 = Utils.md5(originalFileName + uidGenerator.getUid());
+        //String fileNameMd5 = Utils.md5(originalFileName + uidGenerator.getUid());
+        String fileNameMd5 = Utils.md5(originalFileName + System.currentTimeMillis());
         String fileName = fileNameMd5;
         int dotIndex = originalFileName.lastIndexOf(".");
         String fileType = "";
@@ -70,7 +74,6 @@ public class OssController {
     }
 
     @PostMapping("/prePartUpload")
-    @ResponseBody
 //    @CrossOrigin(origins = "*")
     public Object partUpload (
             @RequestParam("filename") String filename,
@@ -103,7 +106,6 @@ public class OssController {
     }
 
     @PostMapping("/partUpload")
-    @ResponseBody
 //    @CrossOrigin(origins = "*")
     public Object partUpload (
             HttpServletRequest request,

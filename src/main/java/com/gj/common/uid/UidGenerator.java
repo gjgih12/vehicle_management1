@@ -19,7 +19,7 @@ public class UidGenerator {
         defaultUidGenerator.setTimeBits(30);
         defaultUidGenerator.setWorkerBits(20);
         defaultUidGenerator.setSeqBits(13);
-        defaultUidGenerator.setEpochStr("2020-02-01");
+        defaultUidGenerator.setEpochStr("2020-10-10");
         defaultUidGenerator.setWorkerIdAssigner(configWorkerIdAssigner);
         try {
             defaultUidGenerator.afterPropertiesSet();

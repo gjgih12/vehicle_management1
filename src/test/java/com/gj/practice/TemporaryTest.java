@@ -3,6 +3,7 @@ package com.gj.practice;
 import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.testpojo.CarDemo;
 import com.gj.testpojo.StudentDemo;
+import com.gj.utils.DateTimeUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -341,6 +342,14 @@ public class TemporaryTest {
 
 
         return true;
+
+    }
+
+    @Test
+    public void test11(){
+
+        System.out.println(DateTimeUtil.getLocalTime());
+        System.out.println(System.currentTimeMillis());
 
     }
 

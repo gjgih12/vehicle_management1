@@ -1,4 +1,4 @@
-package com.gj.utils;
+package com.gj.common.msg;
 
 import org.springframework.http.HttpStatus;
 

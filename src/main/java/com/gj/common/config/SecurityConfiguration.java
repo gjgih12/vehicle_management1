@@ -18,6 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private static final String[] BY_PASS_URLS = {"/","/index","/login","/toLogin","/error",
+            "/code/image","/index/**","/js/**","/minio/**","/funTest/**","/oss/**","/car/nakedCar/**"};
+
     @Autowired
     private OauthUserDetailsService oauthUserDetailsService;
 
@@ -49,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/index","/login","/toLogin","/error","/code/image","/index/**","/js/**","/minio/**","/funTest/**").permitAll()//这些路径都是放开的
+                .antMatchers(BY_PASS_URLS).permitAll()//这些路径都是放开的
                 .anyRequest().authenticated()   // 其他地址的访问均需验证权限
                 //.antMatchers("/user/**").hasRole("USER")
                 //.antMatchers("/admin/**").hasRole("ADMIN")

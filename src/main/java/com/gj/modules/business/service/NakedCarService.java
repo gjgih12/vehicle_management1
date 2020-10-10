@@ -1,7 +1,7 @@
 package com.gj.modules.business.service;
 
 import com.gj.common.entity.car.NakedCarEntity;
-import com.gj.utils.RestResponse;
+import com.gj.common.msg.RestResponse;
 
 import java.util.HashMap;
 import java.util.List;

@@ -19,8 +19,8 @@ oss:
   domain: https://gengjian-vehicle.oss-cn-beijing.aliyuncs.com
   prefix: test
   endPoint: oss-cn-beijing.aliyuncs.com
-  accessKeyId: LTAI4GCoemjtNXyWRVoQwe39
-  accessKeySecret: wEqPRNtSLxjFf42AsXpoB7tEQeBzoR
+  accessKeyId:
+  accessKeySecret:
   bucketName: gengjian-vehicle
 
 

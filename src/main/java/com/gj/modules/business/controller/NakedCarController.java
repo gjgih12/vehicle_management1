@@ -1,8 +1,8 @@
 package com.gj.modules.business.controller;
 
 import com.gj.common.entity.car.NakedCarEntity;
+import com.gj.common.msg.RestResponse;
 import com.gj.modules.business.service.NakedCarService;
-import com.gj.utils.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
