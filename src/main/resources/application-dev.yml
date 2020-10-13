@@ -7,6 +7,8 @@ spring:
     password: Gengmy3606. #ENC(viDKjiz4PpRtkOJp06GhSw==)
   jackson:
     time-zone: GMT+8      #时差问题
+  application:
+    name: springfox-swagger
 
 #是否打开对应的定时任务
 scheduling:
@@ -28,3 +30,16 @@ oss:
 #  expiration: 7200000
 #  token: Authorization
 
+#spring:
+#  application:
+#    name: springfox-swagger
+#server:
+#  port: 8080
+
+# ===== 自定义swagger配置 ===== #
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger
+  try-host: http://localhost:${server.port}

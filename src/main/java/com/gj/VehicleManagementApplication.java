@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+//@EnableOpenApi
 //@EnableScheduling
 @SpringBootApplication
 //@EnableEncryptableProperties //开启加密注解
