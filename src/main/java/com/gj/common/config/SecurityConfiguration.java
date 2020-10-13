@@ -1,5 +1,7 @@
 package com.gj.common.config;
 
+import com.gj.common.filter.JWTAuthenticationFilter;
+import com.gj.common.filter.JWTAuthorizationFilter;
 import com.gj.modules.oauth.service.impl.OauthUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -19,10 +22,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String[] BY_PASS_URLS = {"/","/index","/login","/toLogin","/error",
-            "/code/image","/index/**","/js/**","/minio/**","/funTest/**","/oss/**","/car/nakedCar/**"};
+            "/code/image","/index/**","/js/**","/minio/**","/funTest/**","/oss/**"/*,"/car/nakedCar/**"*/};
 
     @Autowired
     private OauthUserDetailsService oauthUserDetailsService;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -57,12 +61,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/user/**").hasRole("USER")
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                // 不需要session
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .exceptionHandling()
+                .and()
+                //.authenticationEntryPoint(new JWTAuthenticationEntryPoint());
                 .formLogin().loginPage("/toLogin")
-                .loginProcessingUrl("/login")    //自定义登录表单请求路径
+                //.loginProcessingUrl("/login")    //自定义登录表单请求路径
                 .defaultSuccessUrl("/backHome")  //登录成功默认跳转页路径
                 .and()
-                .csrf().disable()   //关闭 CSRF 保护(不然不验证token的话post请求403)
+                //.csrf().disable()   //关闭 CSRF 保护(不然不验证token的话post请求403)
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/toLogin");
+
     }
 
     @Bean

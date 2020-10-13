@@ -23,4 +23,8 @@ oss:
   accessKeySecret:
   bucketName: gengjian-vehicle
 
+#jwt:
+#  secret: secret
+#  expiration: 7200000
+#  token: Authorization
 

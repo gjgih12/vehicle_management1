@@ -345,11 +345,28 @@ public class TemporaryTest {
 
     }
 
+    /**
+     * 获取时间
+     */
     @Test
     public void test11(){
 
         System.out.println(DateTimeUtil.getLocalTime());
         System.out.println(System.currentTimeMillis());
+
+    }
+
+
+    /**
+     * 查看字符串是否以指定字符开头
+     */
+    @Test
+    public void test12(){
+
+        String str = "Basicfewdws123";
+
+        System.out.println(str.startsWith("Basic"));
+
 
     }
 
