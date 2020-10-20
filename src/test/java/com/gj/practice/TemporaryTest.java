@@ -4,14 +4,19 @@ import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.testpojo.CarDemo;
 import com.gj.testpojo.StudentDemo;
 import com.gj.utils.DateTimeUtil;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author ：gengjian
@@ -361,12 +366,85 @@ public class TemporaryTest {
      * 查看字符串是否以指定字符开头
      */
     @Test
-    public void test12(){
+    public void test14(){
 
         String str = "Basicfewdws123";
 
         System.out.println(str.startsWith("Basic"));
 
+
+    }
+
+
+    @SneakyThrows
+    @Test
+    public void test15(){
+
+        String str = "sdasdAS+&123的";
+        String encode = URLEncoder.encode(str, "UTF-8");
+        System.out.println("前======"+str);
+        System.out.println("前======"+encode);
+    }
+
+    @Test
+    public void test16(){
+
+        List<String> list = new ArrayList<>();
+        list.add("as");
+        list.add("ad");
+        list.add("af");
+        list.add("ag");
+
+        System.out.println("list=========="+list);
+
+        String [] strArr = list.toArray(new String[4]);
+        Arrays.sort(strArr, String.CASE_INSENSITIVE_ORDER);
+        System.out.println("arr"+strArr);
+
+    }
+
+
+    @Test
+    public void test17(){
+        ThreadLocal<String> local = new ThreadLocal<>();
+
+        Random random = new Random();
+
+        IntStream.range(0,5).forEach(a-> new Thread(()->{
+
+            local.set(a+" "+random.nextInt(10));
+            System.out.println("线程和local值分别是"+local.get());
+
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("等待1秒======================");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+        }).start());
+
+
+    }
+
+    @Test
+    public void test18(){
+
+        IntStream range = IntStream.range(0, 5);
+        //range.forEach(System.out::println);
+        //long count = range.count();
+        //System.out.println("数量："+count);
+        //int sum = range.sum();
+        //System.out.println("求和"+sum);
+    }
+
+    @Test
+    public void test19(){
+
+        BigDecimal[] productTotalPrice = {BigDecimal.ZERO};
+
+        System.out.println(new BigDecimal(0) == BigDecimal.ZERO);
 
     }
 
