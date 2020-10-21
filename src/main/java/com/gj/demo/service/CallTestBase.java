@@ -17,4 +17,8 @@ public abstract class CallTestBase implements CallTest{
         return integers;
     }
 
+    public String code(String str){
+        return str+"111";
+    }
+
 }

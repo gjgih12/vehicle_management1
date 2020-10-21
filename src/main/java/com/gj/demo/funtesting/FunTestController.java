@@ -2,9 +2,9 @@ package com.gj.demo.funtesting;
 
 import com.gj.common.entity.car.NakedCarEntity;
 import com.gj.common.msg.ObjectRestResponse;
+import com.gj.common.msg.RestResponse;
 import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.modules.business.service.NakedCarService;
-import com.gj.common.msg.RestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

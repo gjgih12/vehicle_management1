@@ -1,6 +1,6 @@
 package com.gj.modules.oauth.jwt;
 
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -87,12 +87,12 @@ public class JWTRSA256 {
 
             //校验是否有效
             if (!jwt.verify(rsassaVerifier)) {
-                throw new BusinessException("Token 无效");
+                throw new BaseTwoException("Token 无效");
             }
 
             //校验超时
             if (new Date().after(jwt.getJWTClaimsSet().getExpirationTime())) {
-                throw new BusinessException("Token 已过期");
+                throw new BaseTwoException("Token 已过期");
             }
 
             //获取载体中的数据
@@ -101,7 +101,7 @@ public class JWTRSA256 {
 
             //是否有openUid
             if (Objects.isNull(account)){
-                throw new BusinessException("账号为空");
+                throw new BaseTwoException("账号为空");
             }
             return account.toString();
         } catch (ParseException e) {

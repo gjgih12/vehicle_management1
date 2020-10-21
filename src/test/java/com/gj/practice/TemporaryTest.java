@@ -444,7 +444,12 @@ public class TemporaryTest {
 
         BigDecimal[] productTotalPrice = {BigDecimal.ZERO};
 
-        System.out.println(new BigDecimal(0) == BigDecimal.ZERO);
+        BigDecimal bigDecimal = new BigDecimal("2");
+        BigDecimal bigDecimal2 = new BigDecimal("3");
+
+        System.out.println(bigDecimal.compareTo(bigDecimal2));
+
+        System.out.println(new BigDecimal("0").compareTo(BigDecimal.ZERO));
 
     }
 

@@ -11,7 +11,7 @@
  */
 package com.gj.utils;
 
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import com.gj.common.entity.job.ScheduleJobEntity;
 import com.google.gson.Gson;
 import org.quartz.*;
@@ -45,7 +45,7 @@ public class ScheduleUtils {
         try {
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(jobId));
         } catch (SchedulerException e) {
-            throw new BusinessException("获取定时任务CronTrigger出现异常", e);
+            throw new BaseTwoException("获取定时任务CronTrigger出现异常", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class ScheduleUtils {
                 pauseJob(scheduler, scheduleJob.getJobId());
             }
         } catch (SchedulerException e) {
-            throw new BusinessException("创建定时任务失败", e);
+            throw new BaseTwoException("创建定时任务失败", e);
         }
     }
 
@@ -109,7 +109,7 @@ public class ScheduleUtils {
             }
 
         } catch (SchedulerException e) {
-            throw new BusinessException("更新定时任务失败", e);
+            throw new BaseTwoException("更新定时任务失败", e);
         }
     }
 
@@ -124,7 +124,7 @@ public class ScheduleUtils {
             JobKey jobKey = getJobKey(scheduleJob.getJobId());
             scheduler.triggerJob(jobKey, dataMap);
         } catch (SchedulerException e) {
-            throw new BusinessException("立即执行定时任务失败", e);
+            throw new BaseTwoException("立即执行定时任务失败", e);
         }
     }
 
@@ -135,7 +135,7 @@ public class ScheduleUtils {
         try {
             scheduler.pauseJob(getJobKey(jobId));
         } catch (SchedulerException e) {
-            throw new BusinessException("暂停定时任务失败", e);
+            throw new BaseTwoException("暂停定时任务失败", e);
         }
     }
 
@@ -146,7 +146,7 @@ public class ScheduleUtils {
         try {
             scheduler.resumeJob(getJobKey(jobId));
         } catch (SchedulerException e) {
-            throw new BusinessException("暂停定时任务失败", e);
+            throw new BaseTwoException("暂停定时任务失败", e);
         }
     }
 
@@ -157,7 +157,7 @@ public class ScheduleUtils {
         try {
             scheduler.deleteJob(getJobKey(jobId));
         } catch (SchedulerException e) {
-            throw new BusinessException("删除定时任务失败", e);
+            throw new BaseTwoException("删除定时任务失败", e);
         }
     }
 }

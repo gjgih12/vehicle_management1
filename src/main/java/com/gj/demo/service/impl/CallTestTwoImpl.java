@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @Component
 public class CallTestTwoImpl extends CallTestBase {
+
     @Override
     public List<String> getStringTest(String strCode) {
         List<String> str = Arrays.asList("花","草","树",strCode);

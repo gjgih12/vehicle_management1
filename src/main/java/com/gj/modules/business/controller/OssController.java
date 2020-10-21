@@ -1,17 +1,15 @@
 package com.gj.modules.business.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import com.gj.common.msg.ObjectRestResponse;
 import com.gj.common.oss.*;
 import com.gj.common.uid.UidGenerator;
 import com.gj.utils.Utils;
-import io.netty.util.internal.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,11 +32,11 @@ public class OssController {
         @RequestParam(value = "type", required = false) String type
     ) throws Exception {
         if (file.isEmpty()) {
-            throw new BusinessException("上传文件不能为空");
+            throw new BaseTwoException("上传文件不能为空");
         }
         /*boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (!isMultipart) {
-            throw new BusinessException("上传文件不能为空");
+            throw new BaseTwoException("上传文件不能为空");
         }*/
         if (StringUtils.isEmpty(type)) {
             type = "temp";
@@ -73,7 +71,7 @@ public class OssController {
             @RequestParam(value = "type", required = false) String type
     ) {
         if (StringUtils.isEmpty(filename)) {
-            throw new BusinessException("filename不能为空");
+            throw new BaseTwoException("filename不能为空");
         }
         if (StringUtils.isEmpty(type)) {
             type = "temp";
@@ -106,17 +104,17 @@ public class OssController {
             @RequestParam("file") MultipartFile file
     ) throws Exception {
         if (StringUtils.isEmpty(uploadId)) {
-            throw new BusinessException("uploadId不能为空");
+            throw new BaseTwoException("uploadId不能为空");
         }
         if (part == null || part.intValue() <= 0) {
-            throw new BusinessException("part分片号不合法");
+            throw new BaseTwoException("part分片号不合法");
         }
         if (file == null) {
-            throw new BusinessException("上传文件不能为空");
+            throw new BaseTwoException("上传文件不能为空");
         }
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (!isMultipart) {
-            throw new BusinessException("上传文件不能为空");
+            throw new BaseTwoException("上传文件不能为空");
         }
 
 //        PartUploadInfo partUploadInfo = redisHelper.getPartUploadInfo(uploadId);

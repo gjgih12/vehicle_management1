@@ -11,7 +11,7 @@
  */
 package com.gj.utils;
 
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.ReflectionUtils;
 
@@ -48,7 +48,7 @@ public class ScheduleRunnable implements Runnable {
                 method.invoke(target);
             }
         } catch (Exception e) {
-            throw new BusinessException("执行定时任务失败", e);
+            throw new BaseTwoException("执行定时任务失败", e);
         }
     }
 

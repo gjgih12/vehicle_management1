@@ -1,6 +1,6 @@
 package com.gj.practice;
 
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
@@ -158,7 +158,7 @@ public class BaseCodeTest {
             System.out.println("第三行数据是："+integer);
         }catch (Exception e){
             log.error("数据失败:{},自定义：{}",strArr,"sdhuid");
-            throw new BusinessException("失败");
+            throw new BaseTwoException("失败");
         }
 
         System.out.println(4);

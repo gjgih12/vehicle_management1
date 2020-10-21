@@ -1,6 +1,6 @@
 package com.gj.modules.oauth.jwt;
 
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
@@ -88,20 +88,20 @@ public class JWTHS256 {
             JWSVerifier verifier = new MACVerifier(SECRET);
             //校验是否有效
             if (!jwt.verify(verifier)) {
-                throw new BusinessException("Token 无效");
+                throw new BaseTwoException("Token 无效");
             }
 
             //校验超时
             Date expirationTime = jwt.getJWTClaimsSet().getExpirationTime();
             if (new Date().after(expirationTime)) {
-                throw new BusinessException("Token 已过期");
+                throw new BaseTwoException("Token 已过期");
             }
 
             //获取载体中的数据
             Object account = jwt.getJWTClaimsSet().getClaim("ACCOUNT");
             //是否有openUid
             if (Objects.isNull(account)){
-                throw new BusinessException("账号为空");
+                throw new BaseTwoException("账号为空");
             }
             return account.toString();
         } catch (ParseException e) {

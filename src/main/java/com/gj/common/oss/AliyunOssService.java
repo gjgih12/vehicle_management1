@@ -4,7 +4,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.*;
 import com.gj.common.config.OssConfig;
-import com.gj.common.exception.BusinessException;
+import com.gj.common.exception.BaseTwoException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
@@ -34,7 +34,7 @@ public class AliyunOssService extends OssService {
             client.putObject(ossConfig.getBucketName(), path, inputStream);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            throw new BusinessException("上传文件失败，请检查配置信息");
+            throw new BaseTwoException("上传文件失败，请检查配置信息");
         }
 
         return ossConfig.getDomain() + "/" + path;
@@ -80,7 +80,7 @@ public class AliyunOssService extends OssService {
     @Override
     public String completePartUpload(PartUploadInfo partUploadInfo, List<PartUploadRes> list) {
         if (list == null || list.size() == 0) {
-            throw new BusinessException("partRes不能为空");
+            throw new BaseTwoException("partRes不能为空");
         }
 
         List<PartETag> partETags = new ArrayList<>();
