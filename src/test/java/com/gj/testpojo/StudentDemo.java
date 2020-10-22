@@ -11,6 +11,8 @@ import java.util.List;
  */
 @Data
 public class StudentDemo implements Serializable {
+    private static final long serialVersionUID = -7473157789814799036L;
+
 
     private String id;
 

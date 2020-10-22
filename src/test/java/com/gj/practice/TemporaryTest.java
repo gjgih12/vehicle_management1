@@ -3,7 +3,10 @@ package com.gj.practice;
 import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.testpojo.CarDemo;
 import com.gj.testpojo.StudentDemo;
+import com.gj.testpojo.StudentDemo1;
+import com.gj.testpojo.StudentDemo2;
 import com.gj.utils.DateTimeUtil;
+import com.gj.utils.JacksonJsonUtil;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -453,5 +456,82 @@ public class TemporaryTest {
 
     }
 
+    @Test
+    public void test20(){
+        //Object testObject = new Vector<>();
+        //displayObjectClass(testObject);
+
+        Object obj = new StudentDemo();
+
+        StudentDemo studentDemo = new StudentDemo();
+        studentDemo.setId("123");
+        studentDemo.setName("小明");
+
+        if(obj instanceof StudentDemo1){
+            System.out.println("demo1111");
+        }else if(obj instanceof StudentDemo){
+            System.out.println("demo2222");
+        }else {
+            System.out.println("啥也不是");
+        }
+
+    }
+
+    public static void displayObjectClass(Object o) {
+        if (o instanceof Vector)
+            System.out.println("对象是 java.util.Vector 类的实例");
+        else if (o instanceof ArrayList)
+            System.out.println("对象是 java.util.ArrayList 类的实例");
+        else
+            System.out.println("对象是 " + o.getClass() + " 类的实例");
+    }
+
+    @Test
+    public void test21(){
+
+        StudentDemo1 studentDemo1 = new StudentDemo1();
+        studentDemo1.setAddress("北京");
+        studentDemo1.setSex("1");
+        StudentDemo2 studentDemo2 = new StudentDemo2();
+        studentDemo2.setAddress("北京");
+        studentDemo2.setSex("1");
+
+        if(studentDemo1.equals(studentDemo2)){
+            System.out.println("相等");
+        }else{
+            System.out.println("NONONONONONO");
+
+        }
+
+    }
+
+
+    @Test
+    public void test22(){
+
+        StudentDemo1 studentDemo1 = new StudentDemo1();
+        studentDemo1.setAddress("北京");
+        studentDemo1.setSex("1");
+
+        try {
+            String s = JacksonJsonUtil.beanToJson(studentDemo1);
+            System.out.println(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test23(){
+        String str = "{\"address\":\"北京\",\"sex\":\"1\"}";
+
+        try {
+            StudentDemo1 studentDemo1 = JacksonJsonUtil.jsonToBean(str,StudentDemo1.class);
+            System.out.println(studentDemo1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
