@@ -167,4 +167,12 @@ public class FunTestController {
         return saveDir + "/" + saveFileName;
     }
 
+
+    @GetMapping("/testObjectJson")
+    public NakedCarEntity testObjectJson(){
+        NakedCarEntity nakedCarEntity = new NakedCarEntity();
+        nakedCarEntity.setcBrand("12313");
+        return nakedCarEntity;
+    }
+
 }

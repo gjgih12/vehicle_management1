@@ -16,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -533,5 +534,33 @@ public class TemporaryTest {
         }
 
     }
+
+
+    @SneakyThrows
+    @Test
+    public void test24(){
+
+        Date data = new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String thisDate = "2020-10-30 13:20:18";
+        Date thisTime = sdf.parse(thisDate);
+
+
+        System.out.println(data.getTime() > thisTime.getTime());
+
+
+    }
+
+    @Test
+    public void test25(){
+
+        Integer sum = null;
+        Integer sum2 = 2;
+
+        System.out.println(sum - sum2);
+
+    }
+
 
 }
