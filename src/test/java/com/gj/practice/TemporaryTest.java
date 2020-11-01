@@ -563,4 +563,26 @@ public class TemporaryTest {
     }
 
 
+    @Test
+    public void test26(){
+
+        List<String> str = new ArrayList<>();
+        str.add("1");
+        str.add("2");
+        str.add("3");
+
+        List<String> str2 = new ArrayList<>();
+
+        for (String s : str) {
+            if("4".equals(s)){
+                str2.add(s);
+            }
+        }
+
+        System.out.println(str2);
+
+    }
+
+
+
 }
