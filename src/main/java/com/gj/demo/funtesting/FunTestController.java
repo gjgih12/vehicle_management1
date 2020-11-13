@@ -89,7 +89,10 @@ public class FunTestController {
     @RequestMapping("/download")
     public String download() {
 
-        String url = "http://192.168.6.128:9000/test/temp/20200929/0001.mp4";
+        //String url = "http://211.94.93.168:7580/prod/temp/20200904/f49b0d5c7835dfd275f16b6a4a76048f.mp4";   //13.5M
+        String url = "http://211.94.93.168:7580/prod/temp/20200618/ce21f8d3453cf461d364386f7448571a.mp4";   //50M
+
+        //String url = "https://elearning-oss.jinmaowy.com/prod/temp/20200904/f49b0d5c7835dfd275f16b6a4a76048f.mp4";
 
         String name= System.currentTimeMillis()+".mp4";
 
