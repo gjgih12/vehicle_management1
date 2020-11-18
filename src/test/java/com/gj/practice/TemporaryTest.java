@@ -584,5 +584,101 @@ public class TemporaryTest {
     }
 
 
+    @Test
+    public void test27(){
+
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("A1","a11");
+        map.put("A2","a22");
+        map.put("B1","b11");
+
+        System.out.println(map.containsKey(""));
+
+    }
+    
+    @Test
+    public void test28(){
+        BigDecimal bigDecimal = new BigDecimal("10");
+        BigDecimal bigDecimal2 = new BigDecimal("1");
+        BigDecimal bigDecimal3 = new BigDecimal("5");
+        //System.out.println(bigDecimal.subtract(bigDecimal2));     //减
+        //System.out.println(bigDecimal.add(bigDecimal2));          //加
+        //System.out.println(bigDecimal3.compareTo(bigDecimal2));   //比较 大于返回1小于返回-1
+        System.out.println(bigDecimal2.max(bigDecimal3));         //取最大值
+
+
+    }
+
+
+    @Test
+    public void test29(){
+
+        List<CarDemo> carList = new ArrayList<>();
+
+        carList.add(new CarDemo(1,18,"小明",1));
+        carList.add(new CarDemo(2,19,"狗子",2));
+        carList.add(new CarDemo(3,20,"黑妹",1));
+        carList.add(new CarDemo(4,21,"火龙",2));
+        carList.add(new CarDemo(5,22,"小古",1));
+        carList.add(new CarDemo(6,23,"赵四",2));
+        carList.add(new CarDemo(7,24,"刘能",1));
+        carList.add(new CarDemo(8,25,"夏洛",2));
+
+        //求sort为1的集合
+        /*List<Object> carList2 = new ArrayList<>();
+        for (CarDemo carDemo : carList) {
+            if(carDemo.getSort() == 1){
+                carList2.add(carDemo);
+            }
+        }*/
+//        List<CarDemo> carList2 = carList.stream().filter(car -> car.getSort() == 1).collect(Collectors.toList());
+//        System.out.println("sort为1的集合======"+carList2);
+//
+//        //求sort为2的age总数
+//        Integer sum = carList.stream().filter(car -> car.getSort() == 2).mapToInt(CarDemo::getAge).sum();
+//        System.out.println("sort为2的age总数====="+sum);
+
+//        carList.stream().filter(carDemo -> carDemo.getSort() == 1).filter(
+//                carDemo -> carDemo.getName().contains("小")).mapToInt(CarDemo::getAge);
+
+
+//        double asDouble = carList.stream().mapToInt(CarDemo::getAge).average().getAsDouble();
+//        System.out.println(asDouble);
+
+
+//        Double collect = carList.stream().collect(averagingInt(CarDemo::getAge));
+//        System.out.println(collect);
+
+
+//        List<String> collect = carList.stream().map(CarDemo::getName).collect(Collectors.toList());
+//        System.out.println(collect);
+
+        //筛选年龄大于20的
+//        List<CarDemo> collect = carList.stream().filter(carDemo -> carDemo.getAge() > 20).collect(Collectors.toList());
+//        System.out.println(collect);
+
+        //查询是否有年龄小于18的 有true
+//        boolean b = carList.stream().anyMatch(carDemo -> carDemo.getAge() < 18);
+//        System.out.println(b);
+
+        //年龄最大的
+//        CarDemo carDemo = carList.stream().collect(maxBy(Comparator.comparing(CarDemo::getAge))).get();
+//        System.out.println(carDemo);
+
+        //取年龄最大的 （先排序再取第一个）
+        Optional<CarDemo> first = carList.stream().sorted(Comparator.comparing(CarDemo::getAge).reversed()).findFirst();
+        System.out.println(first.get());
+
+        //倒排序
+//        List<CarDemo> collect = carList.stream().sorted(Comparator.comparing(CarDemo::getAge).reversed()).collect(Collectors.toList());
+//        System.out.println(collect);
+
+        //根据条件取对象
+//        Optional<CarDemo> first = carList.stream().filter(carDemo -> "小明".equals(carDemo.getName())).findFirst();
+//        System.out.println(first.get());
+
+    }
+
+
 
 }

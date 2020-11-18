@@ -52,6 +52,15 @@ public class CarDemo {
         Name = name;
     }*/
 
+    public CarDemo(Integer cId, Integer age, String name, Integer sort) {
+        this.cId = cId;
+        this.age = age;
+        this.Name = name;
+        this.sort = sort;
+    }
+
+    public CarDemo() {
+    }
 
     @Override
     public String toString() {
