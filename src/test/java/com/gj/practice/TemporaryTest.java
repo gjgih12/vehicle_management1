@@ -679,6 +679,15 @@ public class TemporaryTest {
 
     }
 
+    @Test
+    public void test30(){
 
+        Integer i = 1;
+
+        if(i == 1)
+            System.out.println("是1");
+        if(i == 2)
+            System.out.println("是2");
+    }
 
 }

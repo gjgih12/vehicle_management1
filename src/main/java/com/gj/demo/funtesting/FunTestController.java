@@ -8,12 +8,14 @@ import com.gj.modules.business.service.NakedCarService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 /**
  * @author ：gengjian
@@ -175,6 +177,24 @@ public class FunTestController {
     public NakedCarEntity testObjectJson(){
         NakedCarEntity nakedCarEntity = new NakedCarEntity();
         nakedCarEntity.setcBrand("12313");
+        return nakedCarEntity;
+    }
+
+    @PostMapping("/testRestApi")
+    public NakedCarEntity testRestApi(){
+        NakedCarEntity nakedCarEntity = new NakedCarEntity();
+        nakedCarEntity.setId(1);
+        nakedCarEntity.setcBrand("保时捷");
+        nakedCarEntity.setcName("卡宴");
+        nakedCarEntity.setcColor(1);
+        nakedCarEntity.setcLocal("中国");
+        nakedCarEntity.setcType(1);
+        nakedCarEntity.setcPrice(123.14);
+        nakedCarEntity.setcDate(new Date());
+
+
+
+
         return nakedCarEntity;
     }
 
