@@ -631,6 +631,7 @@ public class TemporaryTest {
                 carList2.add(carDemo);
             }
         }*/
+
 //        List<CarDemo> carList2 = carList.stream().filter(car -> car.getSort() == 1).collect(Collectors.toList());
 //        System.out.println("sort为1的集合======"+carList2);
 //
@@ -641,15 +642,19 @@ public class TemporaryTest {
 //        carList.stream().filter(carDemo -> carDemo.getSort() == 1).filter(
 //                carDemo -> carDemo.getName().contains("小")).mapToInt(CarDemo::getAge);
 
+        //求sort为2 年龄大于20的第一个对象
+//        CarDemo first = carList.stream().filter(carDemo -> carDemo.getSort() == 2 && carDemo.getAge() > 20).findFirst().get();
+//        System.out.println(first);
 
+        //求所有年龄平均数
 //        double asDouble = carList.stream().mapToInt(CarDemo::getAge).average().getAsDouble();
 //        System.out.println(asDouble);
 
-
+        //求所有年龄平均数
 //        Double collect = carList.stream().collect(averagingInt(CarDemo::getAge));
 //        System.out.println(collect);
 
-
+        //把集合中所有的名字筛选出来
 //        List<String> collect = carList.stream().map(CarDemo::getName).collect(Collectors.toList());
 //        System.out.println(collect);
 
@@ -666,8 +671,8 @@ public class TemporaryTest {
 //        System.out.println(carDemo);
 
         //取年龄最大的 （先排序再取第一个）
-        Optional<CarDemo> first = carList.stream().sorted(Comparator.comparing(CarDemo::getAge).reversed()).findFirst();
-        System.out.println(first.get());
+        //Optional<CarDemo> first = carList.stream().sorted(Comparator.comparing(CarDemo::getAge).reversed()).findFirst();
+        //System.out.println(first.get());
 
         //倒排序
 //        List<CarDemo> collect = carList.stream().sorted(Comparator.comparing(CarDemo::getAge).reversed()).collect(Collectors.toList());
