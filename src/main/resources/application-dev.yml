@@ -8,7 +8,11 @@ spring:
   jackson:
     time-zone: GMT+8      #时差问题
   application:
-    name: springfox-swagger
+    name: vehicle-car
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 1000
 
 #是否打开对应的定时任务
 scheduling:
@@ -43,3 +47,31 @@ swagger:
   application-version: 1.0
   application-description: springfox swagger
   try-host: http://localhost:${server.port}
+
+auth:
+  serviceId: vehicle-auth
+  user:
+    token-header: Authorization
+    limit-expire: 1440 # 一天过去,单位分钟
+#  client:
+#    id: vehicle-car
+#    secret: 123456
+#    token-header: client-token
+  oauth:
+    clientId: vehicle
+    clientSecret: vehicle
+    grantTypes: password,refresh_token
+    scope: vehicle
+
+jwt:
+  token-header: Authorization
+  expire: 3600
+  rsa-secret: xx1WET12^%3^(WE46
+  user-service: vehicle-car
+
+client:
+  id: vehicle-auth
+  secret: 123456
+  token-header: vehicle-token
+  expire: 3600
+  rsa-secret: x2318^^(*WRYQWR(QW&K

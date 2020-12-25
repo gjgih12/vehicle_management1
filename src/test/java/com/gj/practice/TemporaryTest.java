@@ -8,6 +8,7 @@ import com.gj.testpojo.StudentDemo2;
 import com.gj.utils.DateTimeUtil;
 import com.gj.utils.JacksonJsonUtil;
 import lombok.SneakyThrows;
+import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -16,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -695,5 +697,43 @@ public class TemporaryTest {
             System.out.println("是2");
         //aaaaabbbbb
     }
+
+    @Test
+    public void test31(){
+
+        String str = "Bearer 12edn1oh%201eo12n2od";
+
+        System.out.println(str.replaceAll("%20"," "));
+
+    }
+
+    @Test
+    public void test32() throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String s = "2020-12-23 17:12:00";
+
+        Date date = sdf.parse(s);
+        DateTime dateTime = new DateTime(date);
+
+        //dateTime追加10分钟是否在当前时间之前 在true 不在false
+        System.out.println(dateTime.plusMinutes(10).isBeforeNow());
+
+    }
+
+    @Test
+    public void test33(){
+
+        Integer a1 = 0;
+        Integer a2 = 10;
+
+        Double useRatio = (a1.doubleValue() / a2.doubleValue()) * 100;
+
+        System.out.println(useRatio);
+
+    }
+
+
 
 }

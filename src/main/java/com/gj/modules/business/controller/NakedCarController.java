@@ -1,5 +1,6 @@
 package com.gj.modules.business.controller;
 
+import com.gj.common.annotation.CheckUserToken;
 import com.gj.common.entity.car.NakedCarEntity;
 import com.gj.common.msg.RestResponse;
 import com.gj.modules.business.service.NakedCarService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("car/nakedCar")
+@CheckUserToken
 public class NakedCarController {
 
     @Autowired

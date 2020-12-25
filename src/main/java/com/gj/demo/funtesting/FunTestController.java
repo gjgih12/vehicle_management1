@@ -7,6 +7,7 @@ import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.modules.business.service.NakedCarService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,8 @@ public class FunTestController {
     private NakedCarMapper nakedCarMapper;
     @Autowired
     private NakedCarService nakedCarService;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/testException")
     public ObjectRestResponse testException(){
@@ -197,5 +200,20 @@ public class FunTestController {
 
         return nakedCarEntity;
     }
+
+    @GetMapping("/redisDemo")
+    public ObjectRestResponse redisDemo(){
+        ObjectRestResponse<Object> result = new ObjectRestResponse<>();
+
+        //redisTemplate.opsForValue().set("GENG","123456");
+
+        //String geng = (String) redisTemplate.opsForValue().get("GENG");
+        Boolean geng = redisTemplate.hasKey("GENG");
+        result.setData(geng);
+
+        return result;
+    }
+
+
 
 }

@@ -18,11 +18,6 @@ spring:
     active: dev
   jackson:
     time-zone: GMT+8      #时差问题
-    #redis
-  redis:
-    host: 192.168.124.15
-    port: 6379
-    password: 123456
 
 logging:
 #  config:
