@@ -39,12 +39,13 @@ public class AppRunner implements CommandLineRunner {
             try {
                 keyConfiguration.setUserPriKey(rsaKeyHelper.toBytes(redisTemplate.opsForValue().get(RedisKeyConstants.REDIS_USER_PRI_KEY).toString()));
                 keyConfiguration.setUserPubKey(rsaKeyHelper.toBytes(redisTemplate.opsForValue().get(RedisKeyConstants.REDIS_USER_PUB_KEY).toString()));
+                flag = true;
             } catch (Exception e) {
                 log.error("初始化用户公钥/密钥异常...", e);
-                flag = true;
+                //flag = true;
             }
         }
-        if (flag) {
+        if (!flag) {
             Map<String, byte[]> keyMap = rsaKeyHelper.generateKey(keyConfiguration.getUserSecret());
             keyConfiguration.setUserPriKey(keyMap.get("pri"));
             keyConfiguration.setUserPubKey(keyMap.get("pub"));

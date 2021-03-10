@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,7 +94,13 @@ public class JWTHelper {
      * @throws Exception
      */
     public Jws<Claims> parserToken(String token, byte[] pubKey) throws Exception {
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(rsaKeyHelper.getPublicKey(pubKey)).parseClaimsJws(token);
+
+        PublicKey publicKey = rsaKeyHelper.getPublicKey(pubKey);
+
+        JwtParser jwtParser = Jwts.parser().setSigningKey(publicKey);
+
+        Jws<Claims> claimsJws = jwtParser.parseClaimsJws(token);
+
         return claimsJws;
     }
 

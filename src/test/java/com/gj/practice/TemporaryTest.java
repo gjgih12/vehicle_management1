@@ -11,14 +11,14 @@ import lombok.SneakyThrows;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -733,6 +733,223 @@ public class TemporaryTest {
         System.out.println(useRatio);
 
     }
+
+
+    @Test
+    public void test34(){
+
+        StringBuilder projectSb = new StringBuilder();
+        System.out.println(projectSb.length());
+    }
+
+    @Test
+    public void test35(){
+
+//        Date date = new Date();
+//
+//        Calendar instance = Calendar.getInstance();
+//        instance.setTime(date);
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Calendar calendar = Calendar.getInstance();
+//        String timestamp = df.format(calendar.getTime());
+        String timestamp = df.format(new Date());
+
+        System.out.println(timestamp);
+
+    }
+
+
+    @Test
+    public void test36(){
+
+        List<String> list = null;
+        //list.add("123");
+
+
+        Assert.notEmpty(list, "list is empty");
+
+        System.out.println("================");
+
+    }
+
+
+    @Test
+    public void test37(){
+
+        String str = "33de&2qe2";
+
+        String[] split = str.split("&");
+
+        for (String s : split) {
+            System.out.println(s);
+        }
+
+    }
+
+    @Test
+    public void test38(){
+
+        Map<String,String> headers = new HashMap<>();
+        headers.put("di1","11111");
+        headers.put("di2","22222");
+        headers.put("di3","33333");
+        headers.put("di4","44444");
+
+        Set<String> keys = headers.keySet();
+        for (Iterator<String> i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            System.out.println("key====="+key+">>>>>>"+"headers.get(key)====="+headers.get(key));
+            System.out.println();
+           // method.addHeader(key, headers.get(key));
+        }
+    }
+
+
+    @Test
+    public void test39(){
+        System.out.println(10 % 5);
+    }
+
+
+    @Test
+    public void test40(){
+
+//        Date currentDate = new Date();
+//        Date mothDate = addMonths(currentDate, -1);
+//        Date startDate = DateUtils.getMonthOfFirst(mothDate);
+//        System.out.println(formatDateTime(mothDate, "yyyyMMdd"));
+
+        System.out.println("111===="+formatDateTime(getLocalTime(),"yyyy-MM-dd HH:mm:ss"));
+        System.out.println("222===="+formatDateTime(new Date(),"yyyy-MM-dd HH:mm:ss"));
+    }
+
+
+
+
+
+    public static Date addMonths(Date paramDate, int paramInt) {
+        Calendar localCalendar = Calendar.getInstance();
+        localCalendar.setTime(paramDate);
+        localCalendar.add(Calendar.MONTH, paramInt);
+        return localCalendar.getTime();
+    }
+
+    public static String formatDateTime(Date paramDate, String format) {
+        if (paramDate == null)
+            return null;
+        SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat(format);
+        localSimpleDateFormat.setLenient(false);
+        return localSimpleDateFormat.format(paramDate);
+    }
+
+
+    public static Date getMonthOfFirst(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        // 将小时至0
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        // 将分钟至0
+        calendar.set(Calendar.MINUTE, 0);
+        // 将秒至0
+        calendar.set(Calendar.SECOND, 0);
+        // 将毫秒至0
+        calendar.set(Calendar.MILLISECOND, 0);
+        // 获得当前月最后一天
+        Date edate = calendar.getTime();
+        return edate;
+
+    }
+
+    public static Date getLocalTime() {
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+        Calendar rightNow = Calendar.getInstance();
+        return rightNow.getTime();
+    }
+
+
+    @Test
+    public void test41(){
+        String[] str = {"qwedqsax","def"};
+        assert str.length == 2;
+        //System.out.println(str.length());
+    }
+
+    @Test
+    public void test42(){
+        try {
+            String[] strings = extractAndDecodeHeader("Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCJdLCJleHBpcmUiOjE2MTE3MzY2NTkwNjMsImV4cCI6MTYxMTc0NzQ1OSwiZGVwYXJ0Ijoicm9vdCIsInVzZXJOYW1lIjoi6LaF57qn566h55CG5ZGYIiwidXNlcklkIjoiMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiJkNWZjYzg5Yi1hNTE2LTQyZDQtOTRjNi01ZjJlZDg4NDAwOGEiLCJ0ZW5hbnQiOiJhYzg4Y2ViMzg2YWE0MjMxYjA5YmY0NzJjYjkzN2MyNCIsImNsaWVudF9pZCI6InZ1ZSJ9.aIAJptifFzaW8OhTiSMimTLM_9bcYzsaThd8WWbzNz6XjblJHhnf7GjOaJQ1ZFFzOpqphi6Z0RXVJvWYS1iOr66qKdUPCC4cHV9IWUyBGm_DAyNpyj4UiMam86R-qF4mwpI5jgfMzu-uMtrz5jKtrcLcb5lJPr2ecIIkz2e4E3s");
+            System.out.println(strings);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String[] extractAndDecodeHeader(String header)
+            throws IOException {
+
+        byte[] base64Token = header.substring(6).getBytes("UTF-8");
+        byte[] decoded;
+        try {
+            Base64.Decoder baseDecoder = Base64.getDecoder();
+            decoded = baseDecoder.decode(base64Token);
+        } catch (IllegalArgumentException e) {
+            throw new BadCredentialsException(
+                    "Failed to decode basic authentication token");
+        }
+
+        String token = new String(decoded, "UTF-8");
+
+        int delim = token.indexOf(":");
+
+        if (delim == -1) {
+            throw new BadCredentialsException("Invalid basic authentication token");
+        }
+        return new String[]{token.substring(0, delim), token.substring(delim + 1)};
+    }
+
+
+
+
+    @Test
+    public void test43(){
+
+        BigDecimal discountTotal = new BigDecimal("3");
+        BigDecimal couponDealTotal = new BigDecimal("11");
+
+        System.out.println(String.valueOf(discountTotal
+                .divide(couponDealTotal,4,BigDecimal.ROUND_HALF_UP)
+                .multiply(BigDecimal.valueOf(100)).doubleValue()) + "%");
+
+        //System.out.println(divToPercent(discountTotal,couponDealTotal,2));
+
+        /*BigDecimal b = discountTotal.divide(couponDealTotal,4,BigDecimal.ROUND_HALF_UP);
+
+        NumberFormat percent = NumberFormat.getPercentInstance();
+        percent.setMaximumFractionDigits(2);
+
+        System.out.println(b.multiply(BigDecimal.valueOf(100)).doubleValue() + "%");*/
+
+
+    }
+
+
+    public static String divToPercent(double v1,double v2,int scale){
+        if(scale<0){
+            throw new IllegalArgumentException(
+                    "The scale must be a positive integer or zero");
+        }
+        BigDecimal b1 = new BigDecimal(Double.toString(v1));
+        BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+        BigDecimal b = b1.divide(b2,2,BigDecimal.ROUND_HALF_UP);
+
+        NumberFormat percent = NumberFormat.getPercentInstance();
+        percent.setMaximumFractionDigits(scale);
+        return percent.format(b.doubleValue());
+    }
+
 
 
 

@@ -5,9 +5,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gj.testpojo.CarDemo;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,21 +35,23 @@ public class StringTest {
 
         String str = "qwe,QS12,4JJ#,$sdf?.v,v/kj";
 
-        System.out.println("长度"+str.length());
-        System.out.println("通过下标找字符"+str.charAt(3));
-        System.out.println("追加字符"+str.concat("ooooo"));
-        System.out.println("是否包含指定字符"+str.contains("w0"));
-        System.out.println("比较"+str.equals("qweQS124JJ#$sdf?.vv/kj"));
-        System.out.println("全部小写"+str.toLowerCase());
-        System.out.println("全部大写"+str.toUpperCase());
-        System.out.println("截取"+str.substring(3,7));
-        System.out.println("替换"+str.replace("J","O"));
-        System.out.println("第一次出现的下标"+str.indexOf("J"));
-        System.out.println("最后一次出现的下标"+str.lastIndexOf("J"));
-        String[] split = str.split(",");   //以,分割成数组
-        for (int i = 0; i < split.length; i++) {
-            System.out.println("被转换成数组后的元素"+split[i]);
-        }
+//        System.out.println("长度"+str.length());
+//        System.out.println("通过下标找字符"+str.charAt(3));
+//        System.out.println("追加字符"+str.concat("ooooo"));
+//        System.out.println("是否包含指定字符"+str.contains("w0"));
+//        System.out.println("比较"+str.equals("qweQS124JJ#$sdf?.vv/kj"));
+//        System.out.println("全部小写"+str.toLowerCase());
+//        System.out.println("全部大写"+str.toUpperCase());
+//        System.out.println("截取"+str.substring(3,7));
+//        System.out.println("替换"+str.replace("J","O"));
+//        System.out.println("第一次出现的下标"+str.indexOf("J"));
+//        System.out.println("最后一次出现的下标"+str.lastIndexOf("J"));
+//        String[] split = str.split(",");   //以,分割成数组
+//        for (int i = 0; i < split.length; i++) {
+//            System.out.println("被转换成数组后的元素"+split[i]);
+//        }
+
+        System.out.println(str.replaceAll(",","~"));
 
 
     }
@@ -340,5 +344,66 @@ public class StringTest {
 
     }
 
+
+    @Test
+    public void test1(){
+
+        String key = getKey("one", "two","2131");
+
+        System.out.println(key);
+
+    }
+
+
+    public static String getKey(Object... params){
+        return StringUtils.join(params, "_");
+    }
+
+    protected String getDefault(String strategy){
+        String orderType = strategy.split("_")[0];
+        return getKey(orderType, "1");
+    }
+
+    @Test
+    public void test2(){
+        /*Integer a = 127;
+        Integer b = 127;
+        System.out.println("eq>>>> "+a.equals(b));
+        System.out.println("==>>>> "+(a == b));*/
+        String str = "15101163606";
+        System.out.println(str.substring(5));
+    }
+
+
+    @Test
+    public void test3(){
+        //getKey1("12f","q,22");
+
+        BigDecimal actualPrice = new BigDecimal(0);
+        BigDecimal actualPrice2 = new BigDecimal("2");
+        BigDecimal actualPrice3 = new BigDecimal("3");
+        actualPrice = actualPrice.add(actualPrice2);
+        actualPrice = actualPrice.add(actualPrice3);
+        System.out.println(actualPrice);
+
+    }
+
+    public void getKey1(Object... params){
+        for (Object param : params) {
+            System.out.println(param);
+        }
+    }
+
+    @Test
+    public void test4(){
+
+        String str = "123";
+        if(StringUtils.isNoneBlank(str)){
+            System.out.println("11111");
+        }else{
+            System.out.println("2222222");
+        }
+
+    }
 
 }
