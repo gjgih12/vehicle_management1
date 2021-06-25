@@ -619,9 +619,9 @@ public class TemporaryTest {
 
         carList.add(new CarDemo(1,18,"小明",1));
         carList.add(new CarDemo(2,19,"狗子",2));
-        carList.add(new CarDemo(3,20,"黑妹",1));
+        carList.add(new CarDemo(3,18,"黑妹",1));
         carList.add(new CarDemo(4,21,"火龙",2));
-        carList.add(new CarDemo(5,22,"小古",1));
+        carList.add(new CarDemo(5,18,"小古",1));
         carList.add(new CarDemo(6,23,"赵四",2));
         carList.add(new CarDemo(7,24,"刘能",1));
         carList.add(new CarDemo(8,25,"夏洛",2));
@@ -663,6 +663,9 @@ public class TemporaryTest {
         //筛选年龄大于20的
 //        List<CarDemo> collect = carList.stream().filter(carDemo -> carDemo.getAge() > 20).collect(Collectors.toList());
 //        System.out.println(collect);
+
+        List<String> collect = carList.stream().filter(carDemo -> carDemo.getAge() == 18).map(CarDemo::getName).collect(Collectors.toList());
+        System.out.println(collect);
 
         //查询是否有年龄小于18的 有true
 //        boolean b = carList.stream().anyMatch(carDemo -> carDemo.getAge() < 18);
@@ -950,7 +953,11 @@ public class TemporaryTest {
         return percent.format(b.doubleValue());
     }
 
+    @Test
+    public void test44(){
 
+        System.out.println(System.currentTimeMillis());
 
+    }
 
 }

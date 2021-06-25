@@ -1,5 +1,6 @@
 package com.gj.practice;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,6 +9,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -397,13 +399,21 @@ public class StringTest {
     @Test
     public void test4(){
 
-        String str = "123";
-        if(StringUtils.isNoneBlank(str)){
+        String str = null;
+       /* if(StringUtils.isNoneBlank(str)){
             System.out.println("11111");
         }else{
             System.out.println("2222222");
-        }
+        }*/
+
+        //System.out.println(!str.startsWith("dw"));
+
+        JSONArray jsonArray = null;
+
+        System.out.println(ObjectUtils.isEmpty(jsonArray));
 
     }
+
+
 
 }
