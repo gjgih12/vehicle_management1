@@ -11,7 +11,6 @@ import lombok.SneakyThrows;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
@@ -879,7 +878,7 @@ public class TemporaryTest {
         //System.out.println(str.length());
     }
 
-    @Test
+   /* @Test
     public void test42(){
         try {
             String[] strings = extractAndDecodeHeader("Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCJdLCJleHBpcmUiOjE2MTE3MzY2NTkwNjMsImV4cCI6MTYxMTc0NzQ1OSwiZGVwYXJ0Ijoicm9vdCIsInVzZXJOYW1lIjoi6LaF57qn566h55CG5ZGYIiwidXNlcklkIjoiMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiJkNWZjYzg5Yi1hNTE2LTQyZDQtOTRjNi01ZjJlZDg4NDAwOGEiLCJ0ZW5hbnQiOiJhYzg4Y2ViMzg2YWE0MjMxYjA5YmY0NzJjYjkzN2MyNCIsImNsaWVudF9pZCI6InZ1ZSJ9.aIAJptifFzaW8OhTiSMimTLM_9bcYzsaThd8WWbzNz6XjblJHhnf7GjOaJQ1ZFFzOpqphi6Z0RXVJvWYS1iOr66qKdUPCC4cHV9IWUyBGm_DAyNpyj4UiMam86R-qF4mwpI5jgfMzu-uMtrz5jKtrcLcb5lJPr2ecIIkz2e4E3s");
@@ -887,9 +886,9 @@ public class TemporaryTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    private String[] extractAndDecodeHeader(String header)
+    /*private String[] extractAndDecodeHeader(String header)
             throws IOException {
 
         byte[] base64Token = header.substring(6).getBytes("UTF-8");
@@ -910,7 +909,7 @@ public class TemporaryTest {
             throw new BadCredentialsException("Invalid basic authentication token");
         }
         return new String[]{token.substring(0, delim), token.substring(delim + 1)};
-    }
+    }*/
 
 
 

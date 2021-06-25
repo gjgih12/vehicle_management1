@@ -1,13 +1,7 @@
 package com.gj.modules.oauth.interceptor;
 
-import javax.servlet.ReadListener;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import java.io.*;
-
-public class RequestWrapper extends HttpServletRequestWrapper {
-    private final String body;
+public class RequestWrapper/* extends HttpServletRequestWrapper */{
+   /* private final String body;
 
     public RequestWrapper(HttpServletRequest request) {
         super(request);
@@ -80,6 +74,6 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 
     public String getBody() {
         return this.body;
-    }
+    }*/
 
 }

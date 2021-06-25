@@ -1,20 +1,10 @@
 package com.gj.modules.oauth;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.Date;
-
 /**
  * CustomOauthException的序列化实现
  */
-public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthException> {
-	public CustomOauthExceptionSerializer() {
+public class CustomOauthExceptionSerializer /*extends StdSerializer<CustomOauthException>*/ {
+	/*public CustomOauthExceptionSerializer() {
 		super(CustomOauthException.class);
 	}
 
@@ -28,5 +18,5 @@ public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthExc
 		gen.writeStringField("path", request.getServletPath());
 		gen.writeStringField("timestamp", String.valueOf(new Date().getTime()));
 		gen.writeEndObject();
-	}
+	}*/
 }

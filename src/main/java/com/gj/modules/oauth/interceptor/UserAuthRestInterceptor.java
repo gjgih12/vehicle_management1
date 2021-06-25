@@ -1,37 +1,13 @@
 package com.gj.modules.oauth.interceptor;
 
-import com.alibaba.fastjson.JSON;
-import com.gj.common.annotation.CheckUserToken;
-import com.gj.common.annotation.IgnoreUserToken;
-import com.gj.common.config.UserAuthConfig;
-import com.gj.common.constant.CommonConstants;
-import com.gj.common.constant.RequestHeaderConstants;
-import com.gj.common.exception.auth.NonLoginException;
-import com.gj.common.msg.BaseResponse;
-import com.gj.context.BaseContextHandler;
-import com.gj.modules.oauth.jwt.IJWTInfo;
-import com.gj.modules.oauth.jwt.UserAuthUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * 用户token拦截认证
  *
  * @author ace
  * @version 2017/9/10
  */
-public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
-    private Logger logger = LoggerFactory.getLogger(UserAuthRestInterceptor.class);
+public class UserAuthRestInterceptor /*extends HandlerInterceptorAdapter*/ {
+    /*private Logger logger = LoggerFactory.getLogger(UserAuthRestInterceptor.class);
 
     @Autowired
     private UserAuthUtil userAuthUtil;
@@ -82,7 +58,7 @@ public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
                     throw new NonLoginException("token错误");
                 }
 
-                /*String tenantID = BaseContextHandler.getTenantID();
+                *//*String tenantID = BaseContextHandler.getTenantID();
                 IJWTInfo infoFromToken = userAuthUtil.getInfoFromToken(token,questURL);
                 BaseContextHandler.setToken(token);
                 BaseContextHandler.setUsername(infoFromToken.getUniqueName());
@@ -96,7 +72,7 @@ public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
                         throw new NonLoginException("用户不合法!");
                     }
                 }
-                BaseContextHandler.setTenantID(userTenantId);*/
+                BaseContextHandler.setTenantID(userTenantId);*//*
             } catch (NonLoginException ex) {
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 logger.error(ex.getMessage(), ex);
@@ -113,5 +89,5 @@ public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         BaseContextHandler.remove();
         super.afterCompletion(request, response, handler, ex);
-    }
+    }*/
 }

@@ -1,48 +1,12 @@
 package com.gj.modules.oauth.config;
 
-import com.gj.common.constant.CommonConstants;
-import com.gj.common.constant.RedisKeyConstants;
-import com.gj.modules.oauth.bean.OauthUser;
-import com.gj.modules.oauth.service.impl.OauthUserDetailsService;
-import com.gj.utils.RsaKeyHelper;
-import com.gj.utils.Sha256PasswordEncoder;
 import lombok.extern.slf4j.Slf4j;
-import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
-import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import sun.security.rsa.RSAPrivateCrtKeyImpl;
-import sun.security.rsa.RSAPublicKeyImpl;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-@Configuration
+//@Configuration
 @Slf4j
-public class OAuthSecurityConfig extends AuthorizationServerConfigurerAdapter {
+public class OAuthSecurityConfig /*extends AuthorizationServerConfigurerAdapter*/ {
 
-    @Autowired
+    /*@Autowired
     private AuthenticationManager auth;
 
     @Autowired
@@ -139,13 +103,13 @@ public class OAuthSecurityConfig extends AuthorizationServerConfigurerAdapter {
             throw new RuntimeException("redis异常 或 未启动auth 服务,并保证app和auth处于同一个redis集群当中...");
         }
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter() {
-            /***
+            *//***
              * 重写增强token方法,用于自定义一些token返回的信息
-             */
+             *//*
             @Override
             public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
                 OauthUser user = (OauthUser) authentication.getUserAuthentication().getPrincipal();
-                /** 自定义一些token属性 ***/
+                *//** 自定义一些token属性 ***//*
                 final Map<String, Object> additionalInformation = new HashMap<>();
                 Date expireTime = DateTime.now().plusSeconds(accessToken.getExpiresIn()).toDate();
                 additionalInformation.put(CommonConstants.JWT_KEY_EXPIRE, expireTime);
@@ -174,5 +138,5 @@ public class OAuthSecurityConfig extends AuthorizationServerConfigurerAdapter {
         public void init(AuthenticationManagerBuilder auth) throws Exception {
             auth.userDetailsService(oauthUserDetailsService).passwordEncoder(new Sha256PasswordEncoder());
         }
-    }
+    }*/
 }

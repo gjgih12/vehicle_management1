@@ -1,22 +1,5 @@
 package com.gj.modules.oauth.filter;
 
-import com.gj.common.vo.security.BaseUserVO;
-import com.gj.modules.oauth.service.BaseUserService;
-import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.util.Assert;
-import org.springframework.util.ObjectUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 /**
  * 普通用户名，密码登陆
  *
@@ -24,8 +7,8 @@ import java.util.Map;
  * @Date: 2021-01-05
  * @Description:
  */
-public class OrdinaryAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-    private String username = "username";
+public class OrdinaryAuthenticationFilter /*extends AbstractAuthenticationProcessingFilter*/ {
+  /*  private String username = "username";
     private String password = "password";
 
     private BaseUserService baseUserService;
@@ -100,5 +83,5 @@ public class OrdinaryAuthenticationFilter extends AbstractAuthenticationProcessi
 
     public void setBaseUserService(BaseUserService baseUserService) {
         this.baseUserService = baseUserService;
-    }
+    }*/
 }

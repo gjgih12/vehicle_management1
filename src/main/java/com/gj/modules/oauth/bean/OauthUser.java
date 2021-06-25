@@ -1,17 +1,11 @@
 package com.gj.modules.oauth.bean;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-
 /**
  * @author ：gengjian
  * @date ：Created in 2020/8/31
  */
-public class OauthUser extends User implements UserDetails {
-    private static final long serialVersionUID = 3123152600328379950L;
+public class OauthUser /*extends User implements UserDetails*/ {
+    /*private static final long serialVersionUID = 3123152600328379950L;
     public String id;
     public String name;
 
@@ -47,6 +41,6 @@ public class OauthUser extends User implements UserDetails {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
 }

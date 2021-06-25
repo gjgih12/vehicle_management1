@@ -1,22 +1,11 @@
 package com.gj.common.filter;
 
-import com.gj.modules.oauth.controller.ValidateCodeController;
 import com.gj.common.exception.ValidateCodeException;
-import com.gj.common.vo.security.ImageCode;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.social.connect.web.HttpSessionSessionStrategy;
-import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -25,21 +14,21 @@ import java.io.IOException;
  */
 @Component
 @WebFilter
-public class ValidateCodeFilter extends OncePerRequestFilter {
+public class ValidateCodeFilter /*extends OncePerRequestFilter*/ {
     /*@Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;*/
 
     //使用sessionStrategy将生成的验证码对象存储到Session中
-    private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+   /* private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
-    /**
+    *//**
      * 如果请求是/login、对图片验证码进行校验
      * @param httpServletRequest
      * @param httpServletResponse
      * @param filterChain
      * @throws ServletException
      * @throws IOException
-     */
+     *//*
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
                                     HttpServletResponse httpServletResponse,
@@ -65,12 +54,12 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
-    /**
+    *//**
      * 对图片验证码进行校验
      * @param servletWebRequest：请求参数 包含表单提交的图片验证码信息
      * @throws ServletRequestBindingException
      * @throws ValidateCodeException: 验证码校验失败 抛出异常
-     */
+     *//*
     private void validateCode(ServletWebRequest servletWebRequest) throws ServletRequestBindingException, ValidateCodeException {
         //从Session获取保存在服务器端的验证码
         ImageCode codeInSession = (ImageCode) sessionStrategy.getAttribute(servletWebRequest, ValidateCodeController.SESSION_KEY_IMAGE_CODE);
@@ -101,5 +90,5 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
         //从Session移除该字段信息
         sessionStrategy.removeAttribute(servletWebRequest, ValidateCodeController.SESSION_KEY_IMAGE_CODE);
-    }
+    }*/
 }

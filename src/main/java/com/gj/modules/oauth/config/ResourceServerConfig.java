@@ -1,22 +1,14 @@
 package com.gj.modules.oauth.config;
 
 
-import com.gj.modules.oauth.AuthExceptionEntryPoint;
-import com.gj.modules.oauth.CustomAccessDeniedHandler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-
 /**
  * @author ace
  * @create 2018/3/21.
  */
-@Configuration
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+//@Configuration
+public class ResourceServerConfig /*extends ResourceServerConfigurerAdapter*/ {
 
-	@Autowired
+	/*@Autowired
 	private CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Override
@@ -28,5 +20,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().permitAll();
-    }
+    }*/
 }

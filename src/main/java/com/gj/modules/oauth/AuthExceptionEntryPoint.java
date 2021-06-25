@@ -1,23 +1,12 @@
 package com.gj.modules.oauth;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * tokan校验失败返回信息
  */
-public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
+public class AuthExceptionEntryPoint /*implements AuthenticationEntryPoint*/ {
 
 
-	@Override
+	/*@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException)
 			throws ServletException {
@@ -36,5 +25,5 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
 		} catch (Exception e) {
 			throw new ServletException();
 		}
-	}
+	}*/
 }

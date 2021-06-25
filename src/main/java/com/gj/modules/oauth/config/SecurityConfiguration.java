@@ -1,33 +1,15 @@
 package com.gj.modules.oauth.config;
 
-import com.gj.modules.oauth.OrdinaryLoginFailureHandler;
-import com.gj.modules.oauth.OrdinaryLoginSuccessHandler;
-import com.gj.modules.oauth.filter.OrdinaryAuthenticationFilter;
-import com.gj.modules.oauth.provider.OrdinaryLoginAuthenticationProvider;
-import com.gj.modules.oauth.service.BaseUserService;
-import com.gj.modules.oauth.service.impl.OauthUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 /**
  * @author ：gengjian
  * @date ：2020/7/3
  * Description: Security 配置类
  */
-@EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//@EnableWebSecurity
+public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter*/ {
 
-    private static final String[] BY_PASS_URLS = {"/","/index","/login","/toLogin","/error",
-            "/code/image","/index/**","/js/**","/minio/**","/funTest/**","/oss/**"/*,"/car/nakedCar/**"*/};
+    /*private static final String[] BY_PASS_URLS = {"/","/index","/login","/toLogin","/error",
+            "/code/image","/index/**","/js/**","/minio/**","/funTest/**","/oss/**"*//*,"/car/nakedCar/**"*//*};
 
     @Autowired
     private OauthUserDetailsService oauthUserDetailsService;
@@ -43,32 +25,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        /**
+        *//**
          * 在内存中创建一个名为 "user" 的用户，密码为 "pwd"，拥有 "USER" 权限，密码使用BCryptPasswordEncoder加密
-         */
-        /*auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("user").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER");*/
-        /**
+         *//*
+        *//*auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("user").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER");*//*
+        *//**
          * 在内存中创建一个名为 "admin" 的用户，密码为 "pwd"，拥有 "USER" 和"ADMIN"权限
-         */
-        /*auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER","ADMIN");*/
+         *//*
+        *//*auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER","ADMIN");*//*
 
         auth.authenticationProvider(ordinaryLoginAuthenticationProvider);
         auth.userDetailsService(oauthUserDetailsService).passwordEncoder(passwordEncoder());
 
     }
 
-    /**
+    *//**
      * 匹配 "/","/index" 路径，不需要权限即可访问
      * 匹配 "/user" 及其以下所有路径，都需要 "USER" 权限
      * 匹配 "/admin" 及其以下所有路径，都需要 "ADMIN" 权限
      * 登录地址为 "/login"，登录成功默认跳转到页面 "/user"
      * 退出登录的地址为 "/logout"，退出成功后跳转到页面 "/login"
-     */
+     *//*
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http
+        http
                 .authorizeRequests()
                 .antMatchers(BY_PASS_URLS).permitAll()//这些路径都是放开的
                 .anyRequest().authenticated()   // 其他地址的访问均需验证权限
@@ -89,25 +71,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/backHome")  //登录成功默认跳转页路径
                 .and()
                 .csrf().disable()   //关闭 CSRF 保护(不然不验证token的话post请求403)
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/toLogin");*/
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/toLogin");
 
-        http
-                .requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").permitAll();
-        http.addFilterBefore(ordinaryAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+//        http
+//                .requestMatchers().anyRequest()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/**").permitAll();
+        //http.addFilterBefore(ordinaryAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Bean
-    public OrdinaryAuthenticationFilter ordinaryAuthenticationFilter() throws Exception {
-        OrdinaryAuthenticationFilter ordinaryAuthenticationFilter = new OrdinaryAuthenticationFilter();
-        ordinaryAuthenticationFilter.setBaseUserService(baseUserService);
-        ordinaryAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
-        ordinaryAuthenticationFilter.setAuthenticationSuccessHandler(ordinaryLoginSuccessHandler);
-        ordinaryAuthenticationFilter.setAuthenticationFailureHandler(ordinaryLoginFailureHandler);
-        return ordinaryAuthenticationFilter;
-    }
+//    @Bean
+//    public OrdinaryAuthenticationFilter ordinaryAuthenticationFilter() throws Exception {
+//        OrdinaryAuthenticationFilter ordinaryAuthenticationFilter = new OrdinaryAuthenticationFilter();
+//        ordinaryAuthenticationFilter.setBaseUserService(baseUserService);
+//        ordinaryAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
+//        ordinaryAuthenticationFilter.setAuthenticationSuccessHandler(ordinaryLoginSuccessHandler);
+//        ordinaryAuthenticationFilter.setAuthenticationFailureHandler(ordinaryLoginFailureHandler);
+//        return ordinaryAuthenticationFilter;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -118,7 +100,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
+    }*/
 
 
 

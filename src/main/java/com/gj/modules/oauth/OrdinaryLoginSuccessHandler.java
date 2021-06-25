@@ -1,24 +1,7 @@
 package com.gj.modules.oauth;
 
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.MapUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.common.exceptions.UnapprovedClientAuthenticationException;
-import org.springframework.security.oauth2.provider.*;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Base64;
 
 /**
  *
@@ -28,8 +11,8 @@ import java.util.Base64;
  **/
 @Slf4j
 @Component
-public class OrdinaryLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
-    @Autowired
+public class OrdinaryLoginSuccessHandler /*extends SavedRequestAwareAuthenticationSuccessHandler*/ {
+    /*@Autowired
     private ObjectMapper objectMapper;
     @Autowired
     private ClientDetailsService clientDetailsService;
@@ -72,12 +55,12 @@ public class OrdinaryLoginSuccessHandler extends SavedRequestAwareAuthentication
         }
     }
 
-    /**
+    *//**
      * Decodes the header into a username and password.
      *
      * @throws BadCredentialsException if the Basic header is not present or is not valid
      *                 Base64
-     */
+     *//*
     private String[] extractAndDecodeHeader(String header)
             throws IOException {
 
@@ -109,7 +92,7 @@ public class OrdinaryLoginSuccessHandler extends SavedRequestAwareAuthentication
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 }

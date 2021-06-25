@@ -1,21 +1,12 @@
 package com.gj.common.filter;
 
-import com.gj.context.AppContextHandler;
-import com.gj.modules.oauth.interceptor.RequestWrapper;
-import org.apache.commons.lang.StringUtils;
-
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-
 /**
  * 过滤器Filter，用来把request传递下去
  */
-@WebFilter(urlPatterns = "/*",filterName = "channelFilter")
-public class ChannelFilter implements Filter {
+//@WebFilter(urlPatterns = "/*",filterName = "channelFilter")
+public class ChannelFilter /*implements Filter */{
 
-    @Override
+    /*@Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
@@ -50,5 +41,5 @@ public class ChannelFilter implements Filter {
     @Override
     public void destroy() {
 
-    }
+    }*/
 }

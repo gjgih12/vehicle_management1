@@ -1,25 +1,13 @@
 package com.gj.common.filter;
 
-import com.gj.utils.JwtUtils;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 /**
  * 授权
  * @author ：gengjian
  * @date ：Created in 2020/10/13
  */
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public class JWTAuthorizationFilter/* extends BasicAuthenticationFilter */{
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
+    /*public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
 
@@ -46,9 +34,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         String role = JwtUtils.getUserRole(token);
         if (username != null){
             return new UsernamePasswordAuthenticationToken(username, null,
-                    /*Collections.singleton(new SimpleGrantedAuthority(role))*/null
+                    *//*Collections.singleton(new SimpleGrantedAuthority(role))*//*null
             );
         }
         return null;
-    }
+    }*/
 }

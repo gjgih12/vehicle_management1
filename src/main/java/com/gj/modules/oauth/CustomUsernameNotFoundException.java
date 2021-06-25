@@ -1,14 +1,12 @@
 package com.gj.modules.oauth;
 
-import org.springframework.security.core.AuthenticationException;
-
 /**
  * @author gengjian
  * @date 2020/8/23
  */
-public class CustomUsernameNotFoundException extends AuthenticationException {
+public class CustomUsernameNotFoundException /*extends AuthenticationException*/ {
 
-    private static final long serialVersionUID = 1L;
+    /*private static final long serialVersionUID = 1L;
 
     public CustomUsernameNotFoundException(String msg) {
         super(msg);
@@ -16,5 +14,5 @@ public class CustomUsernameNotFoundException extends AuthenticationException {
 
     public CustomUsernameNotFoundException(String msg, Throwable t) {
         super(msg, t);
-    }
+    }*/
 }

@@ -10,6 +10,7 @@ spring:
   application:
     name: vehicle-car
   redis:
+    database: 2
     host: localhost
     port: 6379
     timeout: 1000
@@ -57,11 +58,11 @@ auth:
 #    id: vehicle-car
 #    secret: 123456
 #    token-header: client-token
-  oauth:
-    clientId: vehicle
-    clientSecret: vehicle
-    grantTypes: password,refresh_token
-    scope: vehicle
+#  oauth:
+#    clientId: vehicle
+#    clientSecret: vehicle
+#    grantTypes: password,refresh_token
+#    scope: vehicle
 
 jwt:
   token-header: Authorization

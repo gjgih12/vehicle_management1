@@ -1,16 +1,11 @@
 package com.gj.utils;
 
-import org.apache.commons.codec.binary.Base64;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.security.MessageDigest;
-
 /**
  * Created by ace on 2017/8/11.
  */
-public class Sha256PasswordEncoder implements PasswordEncoder {
+public class Sha256PasswordEncoder /*implements PasswordEncoder*/ {
 
-    @Override
+    /*@Override
     public String encode(CharSequence charSequence) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -24,5 +19,5 @@ public class Sha256PasswordEncoder implements PasswordEncoder {
     @Override
     public boolean matches(CharSequence charSequence, String s) {
         return this.encode(charSequence.toString()).equals(s);
-    }
+    }*/
 }
