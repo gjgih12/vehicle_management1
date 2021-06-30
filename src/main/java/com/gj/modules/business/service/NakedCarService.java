@@ -13,5 +13,5 @@ public interface NakedCarService {
 
     NakedCarEntity oneNakedCar(Integer nakedId);
 
-    HashMap<String, List<Object>> ListcarGroupCount();
+    HashMap<String, List<Object>> listCarGroupCount();
 }

@@ -65,12 +65,12 @@ public class NakedCarServiceImpl implements NakedCarService {
     }
 
     @Override
-    public HashMap<String, List<Object>> ListcarGroupCount() {
+    public HashMap<String, List<Object>> listCarGroupCount() {
 
         HashMap<String,List<Object>> eCarMap = new HashMap<>();
 
         List<Object> brandList = nakedCarMapper.listCarBrand();
-        List<Object> brandCountList = nakedCarMapper.listCabrandCount();
+        List<Object> brandCountList = nakedCarMapper.listCarBrandCount();
 
         eCarMap.put("brandList",brandList);
         eCarMap.put("brandCountList",brandCountList);

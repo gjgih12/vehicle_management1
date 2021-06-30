@@ -31,7 +31,7 @@ public class EchartsCarController {
     @GetMapping("/carGroupCount")
     public HashMap<String, List<Object>> carGroupCount(){
 
-        HashMap<String, List<Object>> eCarMap = nakedCarService.ListcarGroupCount();
+        HashMap<String, List<Object>> eCarMap = nakedCarService.listCarGroupCount();
 
         return eCarMap;
     }

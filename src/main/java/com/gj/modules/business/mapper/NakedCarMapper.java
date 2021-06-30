@@ -22,5 +22,5 @@ public interface NakedCarMapper {
 
     List<Object> listCarBrand();
 
-    List<Object> listCabrandCount();
+    List<Object> listCarBrandCount();
 }

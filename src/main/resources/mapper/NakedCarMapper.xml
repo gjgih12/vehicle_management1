@@ -34,7 +34,9 @@
         WHERE 1 = 1
         <include refid="selectSql">
         </include>
-        limit #{start},#{pageSize}
+        <if test="start != null and pageSize != null">
+            limit #{start},#{pageSize}
+        </if>
     </select>
 
     <select id="countNaked" resultType="Integer">
@@ -80,7 +82,7 @@
         SELECT c_brand FROM t_car GROUP BY c_brand
     </select>
 
-    <select id="listCabrandCount" resultType="java.lang.Object">
+    <select id="listCarBrandCount" resultType="java.lang.Object">
         SELECT count(c_brand) brandCount FROM t_car GROUP BY c_brand
     </select>
 
