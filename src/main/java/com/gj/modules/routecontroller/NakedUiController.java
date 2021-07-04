@@ -37,14 +37,7 @@ public class NakedUiController {
         return "echarts/CarEcharts";
     }
 
-    /**
-     * 登录界面
-     * @return
-     */
-    @RequestMapping("/toLogin")
-    public String login(){
-        return "index/Login";
-    }
+
 
 
 }

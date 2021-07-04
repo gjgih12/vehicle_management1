@@ -20,5 +20,6 @@ public class BaseUserVO implements Serializable {
     private String mobilePhone;
     private String sex;
     private String type;
+    private String roles;
 
 }
