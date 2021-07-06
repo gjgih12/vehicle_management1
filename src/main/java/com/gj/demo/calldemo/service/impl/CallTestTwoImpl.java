@@ -1,8 +1,8 @@
-package com.gj.demo.service.impl;
+package com.gj.demo.calldemo.service.impl;
 
-import com.gj.demo.service.CallTestBase;
+import com.gj.demo.calldemo.service.AbstractCallTestOne;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
  * @date ：Created in 2020/8/25
  */
 @Slf4j
-@Component
-public class CallTestTwoImpl extends CallTestBase {
+@Service
+public class CallTestTwoImpl extends AbstractCallTestOne {
 
     @Override
     public List<String> getStringTest(String strCode) {
@@ -22,7 +22,7 @@ public class CallTestTwoImpl extends CallTestBase {
         return str;
     }
 
-    @Override
+    /*@Override
     public List<Integer> getIntegerTest(Integer intCode) {
         List<Integer> ints = Arrays.asList(100,101,102,intCode);
         log.info("第二个实现类里数字执行"+intCode);
@@ -34,5 +34,5 @@ public class CallTestTwoImpl extends CallTestBase {
         List<Double> dou = Arrays.asList(100.1,101.1,102.1,douCode);
         log.info("第二个实现类里小数执行"+douCode);
         return dou;
-    }
+    }*/
 }

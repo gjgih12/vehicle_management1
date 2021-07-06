@@ -1,19 +1,9 @@
 package com.gj.modules.oauth.config;
 
-import com.gj.modules.oauth.OrdinaryLoginFailureHandler;
-import com.gj.modules.oauth.OrdinaryLoginSuccessHandler;
-import com.gj.modules.oauth.provider.OrdinaryLoginAuthenticationProvider;
-import com.gj.modules.oauth.service.BaseUserService;
-import com.gj.modules.oauth.service.impl.OauthUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String[] BY_PASS_URLS = {"/","/index","/login","/toLogin","/error",
-            "/code/image","/index/**","/js/**","/funTest/**","/oss/**"};
+            "/code/image","/index/**","/js/**","/funTest/**","/callTest/**","/oss/**"};
 
 //    @Autowired
 //    private OauthUserDetailsService oauthUserDetailsService;

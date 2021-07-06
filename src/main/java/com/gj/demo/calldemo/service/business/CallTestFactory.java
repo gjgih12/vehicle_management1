@@ -1,8 +1,8 @@
-package com.gj.demo.service.business;
+package com.gj.demo.calldemo.service.business;
 
-import com.gj.demo.service.CallTest;
-import com.gj.demo.service.impl.CallTestOneImpl;
-import com.gj.demo.service.impl.CallTestTwoImpl;
+import com.gj.demo.calldemo.service.AbstractCallTestOne;
+import com.gj.demo.calldemo.service.impl.CallTestOneImpl;
+import com.gj.demo.calldemo.service.impl.CallTestTwoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class CallTestFactory {
     @Autowired
     private CallTestOneImpl callTestOne;
 
-    public CallTest selectInterface(Integer choice) {
+    public AbstractCallTestOne selectInterface(Integer choice) {
 
         if(choice ==1){
             return callTestOne;
