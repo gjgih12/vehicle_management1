@@ -14,7 +14,7 @@ import java.util.Map;
  * @date ：Created in 2020/8/25
  */
 @RestController
-@RequestMapping("/callTest")
+@RequestMapping("/testDemo/callTest")
 public class CallController extends AbstractCallController {
 
     @Autowired

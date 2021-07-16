@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String[] BY_PASS_URLS = {"/","/index","/login","/toLogin","/error",
-            "/code/image","/index/**","/js/**","/funTest/**","/callTest/**","/oss/**"};
+            "/code/image","/index/**","/js/**","/testDemo/**","/oss/**"};
 
 //    @Autowired
 //    private OauthUserDetailsService oauthUserDetailsService;

@@ -3,6 +3,9 @@ package com.gj.demo.funtesting;
 import com.gj.common.entity.car.NakedCarEntity;
 import com.gj.common.msg.ObjectRestResponse;
 import com.gj.common.msg.RestResponse;
+import com.gj.demo.listener.DemoCarContect;
+import com.gj.demo.listener.DemoCarEvent;
+import com.gj.demo.listener.DemoCarPublisher;
 import com.gj.modules.business.mapper.NakedCarMapper;
 import com.gj.modules.business.service.NakedCarService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +27,7 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
-@RequestMapping("/funTest")
+@RequestMapping("/testDemo/funTest")
 public class FunTestController {
 
     @Autowired
@@ -33,6 +36,8 @@ public class FunTestController {
     private NakedCarService nakedCarService;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private DemoCarPublisher demoCarPublisher;
 
     @GetMapping("/testException")
     public ObjectRestResponse testException(){
@@ -212,6 +217,21 @@ public class FunTestController {
         result.setData(geng);
 
         return result;
+    }
+
+
+    @GetMapping("/listener1")
+    public Object listener1(){
+
+        DemoCarContect context = new DemoCarContect();
+        context.setCarId("1111111111");
+        context.setCarName("阿斯顿马丁");
+        context.setPrice("1234567");
+
+        //发布事件
+        demoCarPublisher.publish(new DemoCarEvent(this,context));
+
+        return "ok";
     }
 
 
